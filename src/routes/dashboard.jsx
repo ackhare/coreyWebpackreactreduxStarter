@@ -42,8 +42,8 @@ const dashboardRoutes = [
   },
   {
     upgrade: true,
-    path: "/upgrade",
-    name: "Upgrade to PRO",
+    path: "/blogArunya",
+    name: "Update Arunya Blog",
     icon: "pe-7s-rocket",
     component: Upgrade
   },
