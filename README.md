@@ -5,3 +5,5 @@ resources use
 3> mdbbootstrap for datatable
 4 > creative tim light bootstrap react theme
 https://mdbootstrap.com/docs/react/tables/datatables/#advanced-table-options
+
+https://daveceddia.com/convert-createclass-to-es6-class/
