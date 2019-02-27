@@ -59,26 +59,29 @@ return (
             if (!values.pathPrefix&& this.state.valuesField.length>0) {
           errors.pathPrefix = 'Required';
         }
-        if (!values.siteDescription && this.state.valuesField.length>0) {
-          errors.siteDescription = 'Required';
+        if (!values.authorDescription && this.state.valuesField.length>0) {
+          errors.authorDescription = 'Required';
         }
-        if (!values.infoTitle && this.state.valuesField.length>0) {
-          errors.infoTitle = 'Required';
+        if (!values.infoTitleNote && this.state.valuesField.length>0) {
+          errors.infoTitleNote = 'Required';
+        }
+        if (!values.footerNote && this.state.valuesField.length>0) {
+          errors.footerNote = 'Required';
+        }
+        if (!values.authorName && this.state.valuesField.length>0) {
+          errors.authorName = 'Required';
         }
         console.log(values);
         console.log(errors);
         return errors;
       }}
-      onChange={(values) => {
-console.log("xxxxxx");
-        return values;
-      }}
       onSubmit={(values) => {
         var headers = {
           'Content-Type': 'application/json'
       }
-      console.log("values");
-        console.log(values);
+      console.log(values);
+      let authorDescription=document.getElementById("authorDescription")
+      values.authorDescription=authorDescription.innerHTML;
         API.post("blogMetaData/getBlogMetaDataFieldsAndUpdate", values,{headers: headers})
         .then(res => {
           window.scrollTo(0, 0)
@@ -148,28 +151,49 @@ console.log("xxxxxx");
           {errors.pathPrefix}
           </div>
           <div className="form-group">
-          <label>Site Description</label>
-          <input className="form-control"
-            type="text"
-            name="siteDescription"
+          <label>Author Description</label>
+          <textArea className="form-control"
+            rows="5"
+            id="authorDescription"
+            name="authorDescription"
             onChange={handleChange}
             onBlur={handleBlur}
-            value={values.siteDescription}
-          />
-          {errors.siteDescription}
+          >{values.authorDescription}</textArea>
+          {errors.authorDescription}
           </div>
           <div className="form-group">
-          <label>Info Title</label>
+          <label>Author Name</label>
           <input className="form-control"
             type="text"
-            name="infoTitle"
+            name="authorName"
             onChange={handleChange}
             onBlur={handleBlur}
-            value={values.pathPrefix}
+            value={values.authorName}
           />
-          {errors.infoTitle}
+          {errors.authorName}
           </div>
-
+          <div className="form-group">
+          <label>Footer Note</label>
+          <input className="form-control"
+            type="text"
+            name="footerNote"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.footerNote}
+          />
+          {errors.footerNote}
+          </div>
+          <div className="form-group">
+          <label>Info Title Note</label>
+          <input className="form-control"
+            type="text"
+            name="infoTitleNote"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.infoTitleNote}
+          />
+          {errors.infoTitleNote}
+          </div>
           <button  className="btn btn-primary" type="submit">
             Submit
           </button>
