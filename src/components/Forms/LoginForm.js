@@ -9,36 +9,26 @@ class LoginForm extends Component {
   render() {
     return (
       <div className="container">
-      <div className="rowDown" >
+      <div className="row" >
        <h3>Login Arunya Admin Panel</h3>
        <div className="meesaage sub-header-message"></div>
 <Formik  enableReinitialize={true}
         //initialValues={this.state.valuesField}
       validate={values => {
         let errors = {};
-        if (!values.contactEmail) {
-          errors.contactEmail = 'Required';
-        } else if (
-          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.contactEmail)
-        ) {
-          errors.contactEmail = 'Invalid email address';
-        }
-        if (!values.username) {
-          errors.siteTitle = 'Required';
-        }
-        if (!values.name) {
-          errors.authorName = 'Required';
+        if (!values.usernameOrEmail) {
+          errors.usernameOrEmail = 'Required';
         }
         if (!values.password) {
           errors.password = 'Required';
         }
-        if (!values.rePassword) {
-          errors.rePassword = 'Required';
+        console.log("mmmmmmmmmmmmmmmm");
 
 
         return errors;
-      }}}
+      }}
       onSubmit={(values) => {
+        console.log("wwwwwwwwwwwwwwwwwwwww");
         login(values)
         .then(response => {
             localStorage.setItem(ACCESS_TOKEN, response.accessToken);
@@ -93,12 +83,12 @@ class LoginForm extends Component {
           <label>User Name Or Email</label>
           <input className="form-control"
             type="text"
-            name="username"
+            name="usernameOrEmail"
             onChange={handleChange}
             onBlur={handleBlur}
-            value={values.username}
+            value={values.usernameOrEmail}
           />
-          {errors.username}
+          {errors.usernameOrEmail}
           </div>
 
           <div className="form-group">

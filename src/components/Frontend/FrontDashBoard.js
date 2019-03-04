@@ -41,18 +41,18 @@ class FrontDashBoard extends React.Component {
     this.setState({
       isLoading: true
     });
-    getCurrentUser()
-    .then(response => {
-      this.setState({
-        currentUser: response,
-        isAuthenticated: true,
-        isLoading: false
-      });
-    }).catch(error => {
-      this.setState({
-        isLoading: false
-      });
-    });
+    // getCurrentUser()
+    // .then(response => {
+    //   this.setState({
+    //     currentUser: response,
+    //     isAuthenticated: true,
+    //     isLoading: false
+    //   });
+    // }).catch(error => {
+    //   this.setState({
+    //     isLoading: false
+    //   });
+    // });
   }
 
   componentDidMount() {
@@ -78,7 +78,7 @@ class FrontDashBoard extends React.Component {
   handleLogin() {
 
     this.loadCurrentUser();
-    console.log("You are login")
+    console.log("You are login");
     this.props.history.push("/");
   }
 
@@ -89,16 +89,16 @@ render() {
   return (
       <div className="app-container">
          <Header/>
-<SideBar/>
+{/* <SideBar/> */}
             <div className="container">
               <Switch>
 
                 <Route path="/login"
                   render={(props) => <LoginForm onLogin={this.handleLogin} {...props} />}></Route>
                 <Route path="/signup" component={Signup}></Route>
-                <Route path="/users/:username"
+                {/* <Route path="/users/:username"
                   render={(props) => <Profile isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props}  />}>
-                </Route>
+                </Route> */}
                 {/* <PrivateRoute authenticated={this.state.isAuthenticated} path="/poll/new" component={NewPoll} handleLogout={this.handleLogout}></PrivateRoute> */}
                 {/* <Route component={NotFound}></Route> */}
               </Switch>
