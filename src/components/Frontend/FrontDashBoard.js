@@ -5,7 +5,7 @@ import {
   withRouter,
   Switch
 } from 'react-router-dom';
-import "bootstrap/dist/css/bootstrap.min.css";
+import "./Front.css";
 import { getCurrentUser, signup } from '../../util/APIUtils';
 import { ACCESS_TOKEN } from '../../constants';
 import Header from './Header';
@@ -30,7 +30,7 @@ class FrontDashBoard extends React.Component {
     this.handleLogout = this.handleLogout.bind(this);
     this.loadCurrentUser = this.loadCurrentUser.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
-
+    this.toggleSideBar=this.toggleSideBar.bind(this);
     // notification.config({
     //   placement: 'topRight',
     //   top: 70,
@@ -41,18 +41,18 @@ class FrontDashBoard extends React.Component {
     this.setState({
       isLoading: true
     });
-    // getCurrentUser()
-    // .then(response => {
-    //   this.setState({
-    //     currentUser: response,
-    //     isAuthenticated: true,
-    //     isLoading: false
-    //   });
-    // }).catch(error => {
-    //   this.setState({
-    //     isLoading: false
-    //   });
-    // });
+    getCurrentUser()
+    .then(response => {
+      this.setState({
+        currentUser: response,
+        isAuthenticated: true,
+        isLoading: false
+      });
+    }).catch(error => {
+      this.setState({
+        isLoading: false
+      });
+    });
   }
 
   componentDidMount() {
@@ -74,7 +74,12 @@ class FrontDashBoard extends React.Component {
     //   description: description,
     // });
   }
+  toggleSideBar(event)
+  {
 
+      $('#sidebar').toggleClass('active');
+      $(this).toggleClass('active');
+  }
   handleLogin() {
 
     this.loadCurrentUser();
@@ -87,26 +92,79 @@ render() {
     return <LoadingIndicator />
   }
   return (
-      <div className="app-container">
-         <Header/>
-{/* <SideBar/> */}
-            <div className="container">
-              <Switch>
 
-                <Route path="/login"
-                  render={(props) => <LoginForm onLogin={this.handleLogin} {...props} />}></Route>
-                <Route path="/signup" component={Signup}></Route>
-                {/* <Route path="/users/:username"
-                  render={(props) => <Profile isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props}  />}>
-                </Route> */}
-                {/* <PrivateRoute authenticated={this.state.isAuthenticated} path="/poll/new" component={NewPoll} handleLogout={this.handleLogout}></PrivateRoute> */}
-                {/* <Route component={NotFound}></Route> */}
-              </Switch>
+<div className="wrapper">
+
+<nav id="sidebar">
+    <div className="sidebar-header">
+        <h3>Bootstrap Sidebar</h3>
+    </div>
+
+    <ul className="list-unstyled components">
+        <p>Dummy Heading</p>
+        <li className="active">
+            <a className="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
+            <ul className="collapse list-unstyled" id="homeSubmenu">
+                <li><a href="#">Home 1</a></li>
+                <li><a href="#">Home 2</a></li>
+                <li><a href="#">Home 3</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">About</a>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
+            <ul className="collapse list-unstyled" id="pageSubmenu">
+                <li><a href="#">Page 1</a></li>
+                <li><a href="#">Page 2</a></li>
+                <li><a href="#">Page 3</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Portfolio</a>
+        </li>
+        <li>
+            <a href="#">Contact</a>
+        </li>
+    </ul>
+
+</nav>
+
+<div id="content">
+
+    <nav className="navbar navbar-default">
+        <div className="container-fluid">
+
+            <div className="navbar-header">
+                          <button type="button" id="sidebarCollapse" className="navbar-btn" onClick={this.toggleSideBar}>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
             </div>
 
+            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul className="nav navbar-nav navbar-right">
+                    <li><a href="#">Page</a></li>
+                    <li><a href="#">Page</a></li>
+                    <li><a href="#">Page</a></li>
+                    <li><a href="#">Page</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-<Footer/>
-      </div>
+    <h2>Collapsible Sidebar Using Bootstrap 3</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+    <div className="line"></div>
+
+    <h2>Lorem Ipsum Dolor</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+   </div>
+</div>
   );
 }
 }
