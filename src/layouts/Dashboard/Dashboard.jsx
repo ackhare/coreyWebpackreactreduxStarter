@@ -7,7 +7,7 @@ import Footer from "../../components/Footer/Footer";
 import Sidebar from "../../components/Sidebar/Sidebar";
 
 import { style } from "../../variables/Variables.jsx";
-
+import UserProfile from "../../views/UserProfile/UserProfile";
 import dashboardRoutes from "../../routes/dashboard.jsx";
 
 class Dashboard extends Component {
@@ -100,12 +100,15 @@ class Dashboard extends Component {
     }
   }
   render() {
+    console.log("entered layout dashboard");
+    console.log(this.props);
     return (
       <div className="wrapper">
         <NotificationSystem ref="notificationSystem" style={style} />
         <Sidebar {...this.props} />
         <div id="main-panel" className="main-panel" ref="mainPanel">
           <Header {...this.props} />
+
           <Switch>
             {dashboardRoutes.map((prop, key) => {
               if (prop.name === "Notifications")

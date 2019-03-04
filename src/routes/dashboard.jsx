@@ -1,4 +1,4 @@
-import Dashboard from "../views/Dashboard/Dashboard";
+import Dashboard from "../views/Dashboard/DashboardView";
 import UserProfile from "../views/UserProfile/UserProfile";
 import TableList from "../views/TableList/TableList";
 import Typography from "../views/Typography/Typography";
@@ -9,45 +9,45 @@ import Upgrade from "../views/Upgrade/Upgrade";
 
 const dashboardRoutes = [
   {
-    path: "/dashboard",
+    path: "/admin/dashboard",
     name: "Dashboard",
     icon: "pe-7s-graph",
     component: Dashboard
   },
   {
-    path: "/user",
+    path: "/admin/user",
     name: "User Profile",
     icon: "pe-7s-user",
     component: UserProfile
   },
   {
-    path: "/table",
+    path: "/admin/table",
     name: "Table List",
     icon: "pe-7s-note2",
     component: TableList
   },
   {
-    path: "/typography",
+    path: "/admin/typography",
     name: "Typography",
     icon: "pe-7s-news-paper",
     component: Typography
   },
-  { path: "/icons", name: "Icons", icon: "pe-7s-science", component: Icons },
-  { path: "/maps", name: "Maps", icon: "pe-7s-map-marker", component: Maps },
+  { path: "/admin/icons", name: "Icons", icon: "pe-7s-science", component: Icons },
+  { path: "/admin/maps", name: "Maps", icon: "pe-7s-map-marker", component: Maps },
   {
-    path: "/notifications",
+    path: "/admin/notifications",
     name: "Notifications",
     icon: "pe-7s-bell",
     component: Notifications
   },
   {
-    upgrade: true,
-    path: "/blogArunya",
+
+    path: "/admin/blogArunya",
     name: "Update Arunya Blog",
     icon: "pe-7s-rocket",
     component: Upgrade
   },
-  { redirect: true, path: "/", to: "/dashboard", name: "Dashboard" }
+    // { redirect: true, path: "/admin", to: "/admin/dashboard", name: "Dashboard" }
 ];
 
 export default dashboardRoutes;

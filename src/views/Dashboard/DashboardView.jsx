@@ -18,7 +18,7 @@ import {
   legendBar
 } from "../../variables/Variables.jsx";
 
-class Dashboard extends Component {
+class DashboardView extends Component {
   createLegend(json) {
     var legend = [];
     for (var i = 0; i < json["names"].length; i++) {
@@ -30,6 +30,7 @@ class Dashboard extends Component {
     return legend;
   }
   render() {
+    console.log("nnnnnnnnnnnnnnnnnn");
     return (
       <div className="content">
         <Grid fluid>
@@ -161,4 +162,4 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+export default DashboardView;

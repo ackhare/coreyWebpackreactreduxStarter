@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
+import Sidebar from "../../components/Sidebar/Sidebar";
 import {
   Grid,
   Row,
@@ -16,8 +19,14 @@ import Button from "../../components/CustomButton/CustomButton.jsx";
 import avatar from "../../assets/img/faces/face-3.jpg";
 
 class UserProfile extends Component {
+
   render() {
+    console.log("In user");
     return (
+      <div className="wrapper">
+      <Sidebar {...this.props} />
+      <div id="main-panel" className="main-panel" ref="mainPanel">
+        <Header {...this.props} />
       <div className="content">
         <Grid fluid>
           <Row>
@@ -163,7 +172,10 @@ class UserProfile extends Component {
               />
             </Col>
           </Row>
-        </Grid>>
+        </Grid>
+        <Footer />
+      </div>
+      </div>
       </div>
     );
   }
