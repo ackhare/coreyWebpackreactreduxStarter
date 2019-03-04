@@ -1,0 +1,25 @@
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
+#app {
+  min-height: 100vh;
+}
+#content {
+  padding-top: 70px;
+  min-height: calc(100vh - 92px);
+}
+footer {
+  border-radius: 0 !important;
+  border-bottom: 0;
+  margin: 20px 0 0;
+}
+/* footer .copyright {
+  padding-top: / 2;
+  padding-bottom: ;
+} */

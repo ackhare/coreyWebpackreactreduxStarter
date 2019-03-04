@@ -5,6 +5,9 @@ import Card from "../../components/Card/Card";
 import Button from "../../components/CustomButton/CustomButton";
 import Tabs from "../../components/Tabs/Tabs";
 import axios from 'axios';
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
+import Sidebar from "../../components/Sidebar/Sidebar";
 import API from '../../utils/api';
 class Basic extends React.Component{
   constructor() {
@@ -34,6 +37,7 @@ render() {
 }
 console.log(this.state.valuesField.contactEmail)
 return (
+
   <div className="container">
    <div className="row">
     <h3>Arunya blog metadata</h3>
@@ -252,6 +256,10 @@ class Icons extends React.Component {
   }
   render() {
     return (
+      <div className="wrapper">
+      <Sidebar {...this.props} />
+      <div id="main-panel" className="main-panel" ref="mainPanel">
+        <Header {...this.props} />
       <div className="content">
         <Grid fluid>
           <Row>
@@ -263,6 +271,9 @@ class Icons extends React.Component {
             </Col>
           </Row>
         </Grid>
+        <Footer />
+      </div>
+      </div>
       </div>
     );
   }

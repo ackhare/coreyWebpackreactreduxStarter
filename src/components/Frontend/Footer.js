@@ -1,13 +1,16 @@
-import React, { Component } from "react";
-export default class Footer extends Component {
-  render(){
-      return (
-           <footer className="footer">
-    <div className="container">
-      <span className="text-muted">Place sticky footer content here.</span>
-    </div>
-  </footer>
-
-      )
-  }
+import React from 'react';
+import { Grid, Nav, NavItem } from 'react-bootstrap';
+import './Footer.css';
+function Footer(/*props*/) {
+  return (
+    <footer className="navbar-fixed-bottom footer-arunya">
+					<div className="container">
+						<div className="row">
+							<p className="text-footer">Don't miss my site: <a href="www.devbutze.com">DevButze</a> </p>
+						</div>
+					</div>
+				</footer>
+  );
 }
+
+export default Footer;

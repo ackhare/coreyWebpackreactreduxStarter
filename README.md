@@ -14,7 +14,7 @@ chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security
 
 https://startbootstrap.com/previews/modern-business/
 https://codepen.io/assemany/pen/grJoyx
-
+https://github.com/tomkp/react-layout-pane
 
 
 https://codesandbox.io/s/ql08j35j3q(react draggleble for labels)
@@ -36,3 +36,7 @@ https://spring.io/blog/2015/10/28/react-js-and-spring-data-rest-part-5-security
 
 
 https://www.callicoder.com/series/spring-security-react/
+
+https://scotch.io/tutorials/conditional-routing-with-react-router-v4
+
+http://tszekely.github.io/react-learning-module/step-02(A step by step demo app for simple e commerce app with react-bootstrap only )

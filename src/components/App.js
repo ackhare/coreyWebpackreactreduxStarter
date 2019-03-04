@@ -16,7 +16,8 @@ import indexRoutes from "../routes/index.jsx";
 import Dashboard from "../layouts/Dashboard/Dashboard.jsx";
 import DashboardView from "../views/Dashboard/DashboardView";
 import UserProfile from "../views/UserProfile/UserProfile";
-
+import Upgrade from "../views/Upgrade/Upgrade";
+import FrontDashBoard from "../components/Frontend/FrontDashBoard";
 class App extends React.Component {
   render() {
     console.log("zzzzzzzzzzzzzzzzzzzzzzzzzzz");
@@ -25,8 +26,12 @@ class App extends React.Component {
         <Switch>
         <Route  exact path='/admin' name="Home" component={Dashboard}/>
         <Route  path='/about' name="About" component={AboutPage}/>
+        <Route  path='/' name="About" component={FrontDashBoard}/>
         <Route path="/admin/user"  name= "User Profile" component={UserProfile} />
         <Route path="/admin/dashboard"  name= "User Profile" component={DashboardView} />
+        <Route path="/admin/blogArunya"  name= "User Profile" component={Upgrade} />
+
+
         </Switch>
       </div>
     );
