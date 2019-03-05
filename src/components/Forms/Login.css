@@ -1,0 +1,19 @@
+.login-form-username
+{
+  width:30% !important;
+}
+.login-form-password{
+  width:30% !important;
+}
+.login-form-submit
+{
+  width:30% !important;
+  color: #fff !important;
+    background-color: #1890ff !important;
+    border-color: #1890ff !important;
+    margin-right:2% !important;
+}
+.conatiner-login-form
+{
+  width:1000px  !important;
+}

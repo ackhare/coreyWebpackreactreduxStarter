@@ -1,49 +1,31 @@
 
 
-import React, { Component } from "react";
-import './Header.css';
-import {   Navbar,
-  Nav,
-  NavItem,
-  NavDropdown,
-  MenuItem } from 'react-bootstrap';
-//https://react-bootstrap.github.io/components/navbar/
-export default class Header extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleMenuClick = this.handleMenuClick.bind(this);
-}
+// import React, { Component } from "react";
+// import './Header.css';
+// import {   Navbar,
+//   Nav,
+//   NavItem,
+//   NavDropdown,
+//   MenuItem } from 'react-bootstrap';
+// //https://react-bootstrap.github.io/components/navbar/
+// export default class Content extends React.Component {
 
-handleMenuClick({ key }) {
-  if(key === "logout") {
-    //this.props.onLogout();
-  }
-}
-  render() {
-    return (
-      <div className="app-header">
-      <Navbar>
-      <Navbar.Header>
-        <Navbar.Brand>
-          <a href="#">React-Bootstrap</a>
-        </Navbar.Brand>
-      </Navbar.Header>
-      <Nav>
-        <NavItem eventKey={1} href="#">Link</NavItem>
-        <NavItem eventKey={2} href="#">Link</NavItem>
-        <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-          <MenuItem eventKey={3.1}>Action</MenuItem>
-          <MenuItem eventKey={3.2}>Another action</MenuItem>
-          <MenuItem eventKey={3.3}>Something else here</MenuItem>
-          <MenuItem divider />
-          <MenuItem eventKey={3.3}>Separated link</MenuItem>
-        </NavDropdown>
-      </Nav>
-    </Navbar>
-    </div>
-    );
-  }
-}
+
+
+//   render() {
+//     return (
+//       <h2>Collapsible Sidebar Using Bootstrap 3</h2>
+//       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+//       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+//       <div className="line"></div>
+
+//       <h2>Lorem Ipsum Dolor</h2>
+//       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+//     );
+//   }
+// }
 
 
 

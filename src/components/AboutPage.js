@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/about-page.css';
 
 // Since this component is simple and static, there's no parent container for it.
-const AboutPage = () => {
+export default class AboutPage extends Component{
+
+render()
+{
   return (
     <div>
       <h2 className="alt-header">About</h2>
@@ -17,5 +20,4 @@ const AboutPage = () => {
     </div>
   );
 };
-
-export default AboutPage;
+}

@@ -25,7 +25,7 @@ class App extends React.Component {
       <div>
         <Switch>
         <Route   exact path='/admin' name="Home" component={Dashboard}/>
-        <Route  exact path='/about' name="About" component={AboutPage}/>
+
         <Route exact path="/admin/user"  name= "User Profile" component={UserProfile} />
         <Route exact path="/admin/dashboard"  name= "User Profile" component={DashboardView} />
         <Route exact path="/admin/blogArunya"  name= "User Profile" component={Upgrade} />

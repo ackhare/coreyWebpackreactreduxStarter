@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 import {
   Route,
   withRouter,
-  Switch
+  Switch,
+  BrowserRouter,
+  Link
 } from 'react-router-dom';
 import "./Front.css";
 import { getCurrentUser, signup } from '../../util/APIUtils';
@@ -18,6 +20,12 @@ import PrivateRoute from './PrivateRoute';
 import LoginForm from '../../components/Forms/LoginForm'
 import Footer from './Footer';
 import SideBar from './SideBar';
+import Content from './Content';
+import NotificationSystem from "react-notification-system";
+import SignUpForm from '../Forms/SignUpForm';
+import NavLinks from './NavLinks';
+import AboutPage from '../AboutPage';
+import Logout from "./Logout";
 // http://tszekely.github.io/react-learning-module/step-02
 class FrontDashBoard extends React.Component {
   constructor(props) {
@@ -37,6 +45,13 @@ class FrontDashBoard extends React.Component {
     //   duration: 3,
     // });
   }
+
+  //Header method
+       handleMenuClick({ key }) {
+       if(key === "logout") {
+         this.props.onLogout();
+      }
+     }
   loadCurrentUser() {
     this.setState({
       isLoading: true
@@ -143,27 +158,32 @@ render() {
 
             </div>
 
-            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            {/* <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul className="nav navbar-nav navbar-right">
-                    <li><a href="#">Page</a></li>
-                    <li><a href="#">Page</a></li>
-                    <li><a href="#">Page</a></li>
-                    <li><a href="#">Page</a></li>
+                    <li><Link to="/login">Login</Link></li>
+                    <li><Link to="/signup">Signup</Link></li>
                 </ul>
-            </div>
+            </div> */}
+            <NavLinks isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser}></NavLinks>
         </div>
     </nav>
+    <Switch>
 
-    <h2>Collapsible Sidebar Using Bootstrap 3</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<Route exact path="/login"
+  render={(props) => <LoginForm onLogin={this.handleLogin} {...props} />}></Route>
+<Route exact path="/signup" component={SignUpForm}></Route>
 
-    <div className="line"></div>
-
-    <h2>Lorem Ipsum Dolor</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
+<Route path="/logout"  render={(props) => <Logout  onLogout={this.handleLogout}  />}></Route>
+<Route exact path="/users/:username"
+  render={(props) => <Profile isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props}  />}>
+</Route>
+<Route  exact path="/about"  component={AboutPage}></Route>
+<Route path="/" component={Content}></Route>
+{/* <PrivateRoute authenticated={this.state.isAuthenticated} path="/poll/new" component={NewPoll} handleLogout={this.handleLogout}></PrivateRoute> */}
+{/* <Route component={NotFound}></Route> */}
+</Switch>
    </div>
+
 </div>
   );
 }

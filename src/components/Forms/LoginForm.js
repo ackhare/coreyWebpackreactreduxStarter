@@ -4,11 +4,12 @@ import { Formik } from 'formik';
 import API from '../../utils/api';
 import { login } from '../../util/APIUtils';
 import { ACCESS_TOKEN } from '../../constants';
+import './Login.css'
 class LoginForm extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container conatiner-login-form">
       <div className="row" >
        <h3>Login Arunya Admin Panel</h3>
        <div className="meesaage sub-header-message"></div>
@@ -47,24 +48,7 @@ class LoginForm extends Component {
 
             }
         });
-      //   var headers = {
-      //     'Content-Type': 'application/json'
-      // }
-      // console.log(values);
-      // let authorDescription=document.getElementById("authorDescription")
-      // values.authorDescription=authorDescription.innerHTML;
-      //   API.post("blogMetaData/getBlogMetaDataFieldsAndUpdate", values,{headers: headers})
-      //   .then(res => {
-      //     window.scrollTo(0, 0)
-      //     console.log(res);
-      //     console.log(res.data);
-      //     const node=document.getElementsByClassName("meesaage")[0]
-      //     node.innerHTML = "<div class='label label-success'>The form has been successully updated</div>";
-      //   }) .catch(error => {
-      //     window.scrollTo(0, 0)
-      //     const node=document.getElementsByClassName("meesaage")[0]
-      //   node.innerHTML = "<div class='label label-danger'>There has been some error posting the form</div>";
-      //   })
+
 
       }}
    >
@@ -80,32 +64,33 @@ class LoginForm extends Component {
 
 
           <div className="form-group">
-          <label>User Name Or Email</label>
-          <input className="form-control"
+
+          <input className="form-control  col-md-offset-4 login-form-username"
             type="text"
             name="usernameOrEmail"
             onChange={handleChange}
             onBlur={handleBlur}
+            placeholder="Enter Username Or Email"
             value={values.usernameOrEmail}
           />
           {errors.usernameOrEmail}
           </div>
 
           <div className="form-group">
-          <label>Password</label>
-          <input className="form-control"
+          <input className=" form-control col-md-offset-4 login-form-password"
             type="text"
             name="password"
             onChange={handleChange}
             onBlur={handleBlur}
+            placeholder="Enter Password"
             value={values.password}
           />
           {errors.password}
           </div>
 
 
-          <button  className="btn btn-primary" type="submit">
-            Submit
+          <button  className="btn btn-primary login-form-submit">
+            Login
           </button>
         </form>
 
