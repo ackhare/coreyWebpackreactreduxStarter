@@ -108,17 +108,17 @@ render() {
   }
   return (
 
-<div className="wrapper">
+<div className="wrapperFront">
 
 <SideBar/>
 
-<div id="content">
+<div id="contentFront">
 
     <nav className="navbar navbar-default">
         <div className="container-fluid">
 
             <div className="navbar-header">
-                          <button type="button" id="sidebarCollapse" className="navbar-btn" onClick={this.toggleSideBar}>
+                          <button type="button" id="sidebarCollapseFront" className="navbar-btn" onClick={this.toggleSideBar}>
                     <span></span>
                     <span></span>
                     <span></span>
@@ -139,7 +139,7 @@ render() {
   render={(props) => <Profile isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props}  />}>
 </Route>
 <Route  exact path="/about"  component={AboutPage}></Route>
-<Route  path="/"  component={Content}></Route>
+<Route  path="/" render={(props) => <Content isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props}  />}></Route>
 {/* <Route component={NotFound}></Route> */}
 </Switch>
    </div>

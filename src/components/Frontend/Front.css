@@ -2,7 +2,7 @@
     DEMO STYLE
 */
 /* @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"; */
-#content
+#contentFront
 {
 width: 100%;
 }
@@ -10,6 +10,11 @@ width: 100%;
 body {
     font-family: 'Poppins', sans-serif;
     background: #fafafa;
+}
+.arrow{
+  font-size: 94px !important;
+
+  margin-left: 40%;
 }
 
 p {
@@ -51,13 +56,13 @@ a, a:hover, a:focus {
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
-.wrapper {
+.wrapperFront {
     display: flex;
     align-items: stretch;
     perspective: 1500px;
 }
 
-#sidebar {
+#sidebarFront {
     min-width: 250px;
     max-width: 250px;
     background: #7386D5;
@@ -66,37 +71,37 @@ a, a:hover, a:focus {
     transform-origin: bottom left;
 }
 
-#sidebar.active {
+#sidebarFront.active {
     margin-left: -250px;
     transform: rotateY(100deg);
 }
 
-#sidebar .sidebar-header {
+#sidebarFront .sidebar-header {
     padding: 20px;
     background: #6d7fcc;
 }
 
-#sidebar ul.components {
+#sidebarFront ul.components {
     padding: 20px 0;
     border-bottom: 1px solid #47748b;
 }
 
-#sidebar ul p {
+#sidebarFront ul p {
     color: #fff;
     padding: 10px;
 }
 
-#sidebar ul li a {
+#sidebarFront ul li a {
     padding: 10px;
     font-size: 1.1em;
     display: block;
 }
-#sidebar ul li a:hover {
+#sidebarFront ul li a:hover {
     color: #7386D5;
     background: #fff;
 }
 
-#sidebar ul li.active > a, a[aria-expanded="true"] {
+#sidebarFront ul li.active > a, a[aria-expanded="true"] {
     color: #fff;
     background: #6d7fcc;
 }
@@ -158,13 +163,13 @@ a.article, a.article:hover {
     transition: all 0.3s;
 }
 
-#sidebarCollapse {
+#sidebarCollapseFront {
     width: 40px;
     height: 40px;
     background: #f5f5f5;
 }
 
-#sidebarCollapse span {
+#sidebarCollapseFront span {
     width: 80%;
     height: 2px;
     margin: 0 auto;
@@ -174,18 +179,18 @@ a.article, a.article:hover {
     transition-delay: 0.2s;
 }
 
-#sidebarCollapse span:first-of-type {
+#sidebarCollapseFront span:first-of-type {
     transform: rotate(45deg) translate(2px, 2px);
 }
-#sidebarCollapse span:nth-of-type(2) {
+#sidebarCollapseFront span:nth-of-type(2) {
     opacity: 0;
 }
-#sidebarCollapse span:last-of-type {
+#sidebarCollapseFront span:last-of-type {
     transform: rotate(-45deg) translate(1px, -1px);
 }
 
 
-#sidebarCollapse.active span {
+#sidebarCollapseFront.active span {
     transform: none;
     opacity: 1;
     margin: 5px auto;
@@ -196,31 +201,31 @@ a.article, a.article:hover {
     MEDIAQUERIES
 ----------------------------------------------------- */
 @media (max-width: 768px) {
-    #sidebar {
+    #sidebarFront {
         margin-left: -250px;
         transform: rotateY(90deg);
     }
-    #sidebar.active {
+    #sidebarFront.active {
         margin-left: 0;
         transform: none;
     }
-    #sidebarCollapse span:first-of-type,
-    #sidebarCollapse span:nth-of-type(2),
-    #sidebarCollapse span:last-of-type {
+    #sidebarCollapseFront span:first-of-type,
+    #sidebarCollapseFront span:nth-of-type(2),
+    #sidebarCollapseFront span:last-of-type {
         transform: none;
         opacity: 1;
         margin: 5px auto;
     }
-    #sidebarCollapse.active span {
+    #sidebarCollapseFront.active span {
         margin: 0 auto;
     }
-    #sidebarCollapse.active span:first-of-type {
+    #sidebarCollapseFront.active span:first-of-type {
         transform: rotate(45deg) translate(2px, 2px);
     }
-    #sidebarCollapse.active span:nth-of-type(2) {
+    #sidebarCollapseFront.active span:nth-of-type(2) {
         opacity: 0;
     }
-    #sidebarCollapse.active span:last-of-type {
+    #sidebarCollapseFront.active span:last-of-type {
         transform: rotate(-45deg) translate(1px, -1px);
     }
 

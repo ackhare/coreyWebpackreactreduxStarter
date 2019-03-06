@@ -6,7 +6,7 @@ export default class SideBar extends Component{
   render() {
     return (
 
-<nav id="sidebar">
+<nav id="sidebarFront">
     <div className="sidebar-header">
         <h3>Bootstrap Sidebar</h3>
     </div>

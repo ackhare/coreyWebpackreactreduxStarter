@@ -66,10 +66,10 @@ render()
     <Switch>
     <PrivateRoute exact path='/admin' authenticated={this.state.isAuthenticated} handleLogout={this.handleLogout}  name="Home" component={Dashboard}/>
 
-    <Route exact path="/admin/user"   component={UserProfile} />
-    <Route exact path="/admin/dashboard"  component={DashboardView} />
-    <Route exact path="/admin/blogArunya"   component={Upgrade} />
-    <Route   path='/'  component={FrontDashBoard}/>
+    <PrivateRoute exact path="/admin/user"   authenticated={this.state.isAuthenticated}  component={UserProfile} />
+    <PrivateRoute exact path="/admin/dashboard"  authenticated={this.state.isAuthenticated}  component={DashboardView} />
+    <PrivateRoute exact path="/admin/blogArunya"   authenticated={this.state.isAuthenticated}  component={Upgrade} />
+    <Route   path='/'  isAuthenticated={this.state.isAuthenticated} component={FrontDashBoard}/>
 
     </Switch>
     </div>
