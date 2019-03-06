@@ -21,4 +21,4 @@ this.props.onLogout();
 }
 
 
-export default withRouter(LogoutPage)
+export default LogoutPage

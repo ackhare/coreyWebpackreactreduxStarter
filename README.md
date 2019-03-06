@@ -40,3 +40,6 @@ https://www.callicoder.com/series/spring-security-react/
 https://scotch.io/tutorials/conditional-routing-with-react-router-v4
 
 http://tszekely.github.io/react-learning-module/step-02(A step by step demo app for simple e commerce app with react-bootstrap only )
+
+https://stackoverflow.com/questions/43164554/how-to-implement-authenticated-routes-in-react-router-4
+https://stackoverflow.com/questions/48497510/simple-conditional-routing-in-reactjs

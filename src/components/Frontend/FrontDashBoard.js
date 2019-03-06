@@ -110,39 +110,7 @@ render() {
 
 <div className="wrapper">
 
-<nav id="sidebar">
-    <div className="sidebar-header">
-        <h3>Bootstrap Sidebar</h3>
-    </div>
-
-    <ul className="list-unstyled components">
-        <p>Dummy Heading</p>
-        <li className="active">
-            <a className="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
-            <ul className="collapse list-unstyled" id="homeSubmenu">
-                <li><a href="#">Home 1</a></li>
-                <li><a href="#">Home 2</a></li>
-                <li><a href="#">Home 3</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">About</a>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
-            <ul className="collapse list-unstyled" id="pageSubmenu">
-                <li><a href="#">Page 1</a></li>
-                <li><a href="#">Page 2</a></li>
-                <li><a href="#">Page 3</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">Portfolio</a>
-        </li>
-        <li>
-            <a href="#">Contact</a>
-        </li>
-    </ul>
-
-</nav>
+<SideBar/>
 
 <div id="content">
 
@@ -157,13 +125,6 @@ render() {
                 </button>
 
             </div>
-
-            {/* <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul className="nav navbar-nav navbar-right">
-                    <li><Link to="/login">Login</Link></li>
-                    <li><Link to="/signup">Signup</Link></li>
-                </ul>
-            </div> */}
             <NavLinks isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser}></NavLinks>
         </div>
     </nav>
@@ -178,8 +139,7 @@ render() {
   render={(props) => <Profile isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props}  />}>
 </Route>
 <Route  exact path="/about"  component={AboutPage}></Route>
-<Route path="/" component={Content}></Route>
-{/* <PrivateRoute authenticated={this.state.isAuthenticated} path="/poll/new" component={NewPoll} handleLogout={this.handleLogout}></PrivateRoute> */}
+<Route  path="/"  component={Content}></Route>
 {/* <Route component={NotFound}></Route> */}
 </Switch>
    </div>

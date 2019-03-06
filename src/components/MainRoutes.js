@@ -1,0 +1,79 @@
+import AboutPage from "./AboutPage";
+import indexRoutes from "../routes/index.jsx";
+// This is a class-based component because the current
+// version of hot reloading won't hot reload a stateless
+// component at the top-level.
+import React, { Component } from 'react';
+import Dashboard from "../layouts/Dashboard/Dashboard.jsx";
+import DashboardView from "../views/Dashboard/DashboardView";
+import UserProfile from "../views/UserProfile/UserProfile";
+import Upgrade from "../views/Upgrade/Upgrade";
+import FrontDashBoard from "../components/Frontend/FrontDashBoard";
+import PrivateRoute from "../components/Frontend/PrivateRoute";
+import { NavLink, Route, Switch,withRouter } from "react-router-dom";
+import { getCurrentUser, signup } from '../util/APIUtils';
+import { ACCESS_TOKEN } from '../constants';
+class MainRoutes extends Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentUser: null,
+      isAuthenticated: false,
+      isLoading: false
+    }
+
+  }
+  handleLogout(redirectTo="/", notificationType="success", description="You're successfully logged out.") {
+    localStorage.removeItem(ACCESS_TOKEN);
+
+    this.setState({
+      currentUser: null,
+      isAuthenticated: false
+    });
+
+    this.props.history.push(redirectTo);
+
+    // notification[notificationType]({
+    //   message: 'Polling App',
+    //   description: description,
+    // });
+  }
+  loadCurrentUser() {
+    this.setState({
+      isLoading: true
+    });
+    getCurrentUser()
+    .then(response => {
+      this.setState({
+        currentUser: response,
+        isAuthenticated: true,
+        isLoading: false
+      });
+    }).catch(error => {
+      this.setState({
+        isLoading: false
+      });
+    });
+  }
+
+  componentDidMount() {
+    this.loadCurrentUser();
+  }
+render()
+{
+  return(
+<div>
+    <Switch>
+    <PrivateRoute exact path='/admin' authenticated={this.state.isAuthenticated} handleLogout={this.handleLogout}  name="Home" component={Dashboard}/>
+
+    <Route exact path="/admin/user"   component={UserProfile} />
+    <Route exact path="/admin/dashboard"  component={DashboardView} />
+    <Route exact path="/admin/blogArunya"   component={Upgrade} />
+    <Route   path='/'  component={FrontDashBoard}/>
+
+    </Switch>
+    </div>
+  );
+}
+}
+export default withRouter(MainRoutes);
