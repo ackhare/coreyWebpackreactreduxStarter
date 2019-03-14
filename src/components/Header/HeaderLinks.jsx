@@ -3,22 +3,22 @@ import { NavItem, Nav, NavDropdown, MenuItem } from "react-bootstrap";
 
 class HeaderLinks extends Component {
   render() {
-    const notification = (
-      <div>
-        <i className="fa fa-globe" />
-        <b className="caret" />
-        <span className="notification">5</span>
-        <p className="hidden-lg hidden-md">Notification</p>
-      </div>
-    );
+    // const notification = (
+    //   <div>
+    //     <i className="fa fa-globe" />
+    //     <b className="caret" />
+    //     <span className="notification">5</span>
+    //     <p className="hidden-lg hidden-md">Notification</p>
+    //   </div>
+    // );
     return (
       <div>
         <Nav>
           <NavItem eventKey={1} href="#">
-            <i className="fa fa-dashboard" />
+            {/* <i className="fa fa-dashboard" /> */}
             <p className="hidden-lg hidden-md">Dashboard</p>
           </NavItem>
-          <NavDropdown
+          {/* <NavDropdown
             eventKey={2}
             title={notification}
             noCaret
@@ -29,14 +29,14 @@ class HeaderLinks extends Component {
             <MenuItem eventKey={2.3}>Notification 3</MenuItem>
             <MenuItem eventKey={2.4}>Notification 4</MenuItem>
             <MenuItem eventKey={2.5}>Another notifications</MenuItem>
-          </NavDropdown>
-          <NavItem eventKey={3} href="#">
+          </NavDropdown> */}
+          {/* <NavItem eventKey={3} href="#">
             <i className="fa fa-search" />
             <p className="hidden-lg hidden-md">Search</p>
-          </NavItem>
+          </NavItem> */}
         </Nav>
         <Nav pullRight>
-          <NavItem eventKey={1} href="#">
+          {/* <NavItem eventKey={1} href="#">
             Account
           </NavItem>
           <NavDropdown
@@ -51,7 +51,7 @@ class HeaderLinks extends Component {
             <MenuItem eventKey={2.5}>Something</MenuItem>
             <MenuItem divider />
             <MenuItem eventKey={2.5}>Separated link</MenuItem>
-          </NavDropdown>
+          </NavDropdown> */}
           <NavItem eventKey={3} href="#">
             Log out
           </NavItem>

@@ -9,6 +9,11 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import API from '../../utils/api';
+import { EditorState, convertToRaw } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
+import draftToHtml from 'draftjs-to-html';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import htmlToDraft from 'html-to-draftjs';
 class Basic extends React.Component{
   constructor() {
     super();
@@ -211,6 +216,25 @@ return (
         }
 class TabContent extends React.Component
 {
+  constructor(props) {
+    super(props);
+    this.state = {
+      editorState: EditorState.createEmpty()
+    }
+    this.onEditorStateChange = this.onEditorStateChange.bind(this);
+    this.saveContent = this.saveContent.bind(this);
+  }
+  onEditorStateChange(editorState)
+  {
+    
+    this.setState({
+      editorState:editorState
+    });
+  }
+aaa()
+{
+  console.log(draftToHtml(convertToRaw(this.state.editorState.getCurrentContent())))
+}
   render() {
     const fetchRandomUser = () => API.get("books");
     console.log(fetchRandomUser());
@@ -227,12 +251,22 @@ class TabContent extends React.Component
         </section>
         :null}
         {this.props.activeTab.name === 'Tab 3' ?
-        <section className="panel panel-danger">
-          <h2 className="panel-heading">Content 3</h2>
-          <p className="panel-body">Turnip greens yarrow ricebean rutabaga endive cauliflower sea lettuce kohlrabi amaranth water spinach avocado daikon napa cabbage asparagus winter purslane kale. Celery potato scallion desert raisin horseradish spinach carrot soko. Lotus root water spinach fennel kombu maize bamboo shoot green bean swiss chard seakale pumpkin onion chickpea gram corn pea. Brussels sprout coriander water chestnut gourd swiss chard wakame kohlrabi beetroot carrot watercress. Corn amaranth salsify bunya nuts nori azuki bean chickweed potato bell pepper artichoke.</p>
-          <p className="panel-body">Beetroot water spinach okra water chestnut ricebean pea catsear courgette summer purslane. Water spinach arugula pea tatsoi aubergine spring onion bush tomato kale radicchio turnip chicory salsify pea sprouts fava bean. Dandelion zucchini burdock yarrow chickpea dandelion sorrel courgette turnip greens tigernut soybean radish artichoke wattle seed endive groundnut broccoli arugula.</p>
-        </section>
+        <section className="panel panel-success">
+          <h2 className="panel-heading">About Page</h2>
+          <Editor
+          editorState={this.state.editorState}
+          wrapperClassName="demo-wrapper"
+          editorClassName="demo-editor"
+          onEditorStateChange={this.onEditorStateChange}
+        />
+        {/* <textarea
+          disabled
+          value={draftToHtml(convertToRaw(this.state.editorState.getCurrentContent()))}
+        /> */}
+         <button onClick={this.saveContent}>show alert</button>;
+          </section>
         :null}
+       
       </div>
     );
   }

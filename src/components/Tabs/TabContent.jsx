@@ -1,7 +1,22 @@
 import React from 'react';
+import { EditorState, convertToRaw } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
+import draftToHtml from 'draftjs-to-html';
+import htmlToDraft from 'html-to-draftjs';
+
+
 class TabContent extends React.Component
 {
+  state = {
+    editorState: EditorState.createEmpty(),
+  }
+  onEditorStateChange: Function = (editorState) => {
+    this.setState({
+      editorState,
+    });
+  };
   render() {
+    const { editorState } = this.state;
     return (
       <div>
         {this.props.activeTab.name === 'Tab 1' ?
@@ -19,11 +34,19 @@ class TabContent extends React.Component
         </section>
         :null}
         {this.props.activeTab.name === 'Tab 3' ?
-        <section className="panel panel-danger">
-          <h2 className="panel-heading">Content 3</h2>
-          <p className="panel-body">Turnip greens yarrow ricebean rutabaga endive cauliflower sea lettuce kohlrabi amaranth water spinach avocado daikon napa cabbage asparagus winter purslane kale. Celery potato scallion desert raisin horseradish spinach carrot soko. Lotus root water spinach fennel kombu maize bamboo shoot green bean swiss chard seakale pumpkin onion chickpea gram corn pea. Brussels sprout coriander water chestnut gourd swiss chard wakame kohlrabi beetroot carrot watercress. Corn amaranth salsify bunya nuts nori azuki bean chickweed potato bell pepper artichoke.</p>
-          <p className="panel-body">Beetroot water spinach okra water chestnut ricebean pea catsear courgette summer purslane. Water spinach arugula pea tatsoi aubergine spring onion bush tomato kale radicchio turnip chicory salsify pea sprouts fava bean. Dandelion zucchini burdock yarrow chickpea dandelion sorrel courgette turnip greens tigernut soybean radish artichoke wattle seed endive groundnut broccoli arugula.</p>
-        </section>
+        <section className="panel panel-success">
+          <h2 className="panel-heading">About Page</h2>
+          <Editor
+          editorState={editorState}
+          wrapperClassName="demo-wrapper"
+          editorClassName="demo-editor"
+          onEditorStateChange={this.onEditorStateChange}
+        />
+        <textarea
+          disabled
+          value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
+        />
+          </section>
         :null}
       </div>
     );

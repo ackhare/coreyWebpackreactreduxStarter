@@ -45,3 +45,11 @@ http://tszekely.github.io/react-learning-module/step-02(A step by step demo app 
 
 https://stackoverflow.com/questions/43164554/how-to-implement-authenticated-routes-in-react-router-4
 https://stackoverflow.com/questions/48497510/simple-conditional-routing-in-reactjs
+
+https://stackblitz.com/edit/react-toastr
+https://fkhadra.github.io/react-toastify/
+https://codeseven.github.io/toastr/demo.html
+
+https://github.com/jpuri/react-draft-wysiwyg
+https://github.com/andrerpena/react-mde
+https://stackoverflow.com/questions/34226076/why-is-my-onclick-being-called-on-render-react-js
