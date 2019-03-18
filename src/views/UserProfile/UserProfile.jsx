@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Sidebar from "../../components/Sidebar/Sidebar";
+import { getCurrentUser,getUserDescriptionFromServer } from '../../util/APIUtils';
+import {getUserDescription,setUserDescriptionForm } from '../../pojo/UserDescription';
 import {
   Grid,
   Row,
@@ -18,6 +20,7 @@ import Button from "../../components/CustomButton/CustomButton.jsx";
 import API from '../../utils/api';
 import avatar from "../../assets/img/faces/face-3.jpg";
 import { FileUploader } from "../../components/FileUploader/FileUploader";
+import LoadingIndicator from '../../components/Frontend/LoadingIndicator';
 
 class UserProfile extends Component {
 
@@ -25,15 +28,75 @@ class UserProfile extends Component {
     super(props);
     this.state = {
         pic: null,
+        email:null,
+        countrty:null,
+        city:null,
+        postalCode:null,
+        company:null,
+        address:null,
+        username:null
     }
   
   this.updateAvatar = this.updateAvatar.bind(this);
-  //this.fetchIntialAvatar = this.fetchIntialAvatar.bind(this);
+  this.fetchIntialAvatar = this.fetchIntialAvatar.bind(this);
 }
-// fetchIntialAvatar()
-// {
-  
-// }
+fetchIntialAvatar()
+ {
+
+ }
+ fetchUserDescription()
+ {
+  getCurrentUser()
+  .then(response => {
+    console.log(response); 
+    var currentUser=response.username;
+    getUserDescriptionFromServer(currentUser).then(response1 => {
+
+    var userDescription =getUserDescription(response1); 
+    console.log(userDescription);
+    
+    this.setState({
+      company: userDescription.company
+    });
+    this.setState({
+      username: userDescription.username
+    });
+    this.setState({
+      email: userDescription.email
+    });
+
+  this.setState({
+    fullname: userDescription.fullname
+  });
+
+this.setState({
+  address: userDescription.address
+});
+
+this.setState({
+  city: userDescription.city
+});
+this.setState({
+  postalCode: userDescription.postalCode
+});
+
+
+    }).catch(error1 => {
+      this.setState({
+        isLoading: false
+      });
+    });
+
+  }).catch(error => {
+    this.setState({
+      isLoading: false
+    });
+  });
+ }
+ saveUserDescription()
+ {
+  var company = document.getElementsByClassName("company")[0].value;
+ }
 updateAvatar(fileLocation) {
     this.setState({
       pic: fileLocation
@@ -41,11 +104,16 @@ updateAvatar(fileLocation) {
 }
 
 componentDidMount() {
-//fetchIntialAvatar();
+  this.fetchUserDescription();
 }
 
+
+
   render() {
-    console.log("In user");
+    if(this.state.isLoading) {
+      return <LoadingIndicator />
+    }
+    else
     return (
       <div className="wrapper">
       <Sidebar {...this.props} />
@@ -63,47 +131,41 @@ componentDidMount() {
                       ncols={["col-md-5", "col-md-3", "col-md-4"]}
                       proprieties={[
                         {
-                          label: "Company (disabled)",
+                          label: "Company",
                           type: "text",
                           bsClass: "form-control company",
                           placeholder: "Company",
-                          value: "Creative Code Inc.",
+                          value: this.state.company,
                         
                         },
                         {
                           label: "Username",
                           type: "text",
-                          bsClass: "form-control",
+                          bsClass: "form-control username",
                           placeholder: "Username",
-                          value: "michael23",
+                          value: this.state.username,
                           disabled:true
                         },
                         {
                           label: "Email address",
                           type: "email",
-                          bsClass: "form-control",
+                          bsClass: "form-control email",
                           placeholder: "Email",
-                          value: "michael23",
+                          value: this.state.email,
+                          disabled:true
                         }
                       ]}
                     />
                     <FormInputs
-                      ncols={["col-md-6", "col-md-6"]}
+                      ncols={["col-md-12"]}
                       proprieties={[
                         {
-                          label: "First name",
+                          label: "Full name",
                           type: "text",
-                          bsClass: "form-control",
-                          placeholder: "First name",
-                          value: "Mike"
+                          bsClass: "form-control fullname",
+                          placeholder: "Full name",
+                          value: this.state.fullName
                         },
-                        {
-                          label: "Last name",
-                          type: "text",
-                          bsClass: "form-control",
-                          placeholder: "Last name",
-                          value: "Andrew"
-                        }
                       ]}
                     />
                     <FormInputs
@@ -112,10 +174,10 @@ componentDidMount() {
                         {
                           label: "Adress",
                           type: "text",
-                          bsClass: "form-control",
+                          bsClass: "form-control address",
                           placeholder: "Home Adress",
                           value:
-                            "Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
+                          this.state.address
                         }
                       ]}
                     />
@@ -125,23 +187,23 @@ componentDidMount() {
                         {
                           label: "City",
                           type: "text",
-                          bsClass: "form-control",
+                          bsClass: "form-control city",
                           placeholder: "City",
-                          value: "Mike"
+                          value: this.state.city
                         },
                         {
                           label: "Country",
                           type: "text",
-                          bsClass: "form-control",
+                          bsClass: "form-control country",
                           placeholder: "Country",
-                          value: "Andrew"
+                          value: this.state.country
                         },
                         {
                           label: "Postal Code",
                           type: "number",
-                          bsClass: "form-control",
+                          bsClass: "form-control postalCode",
                           placeholder: "ZIP Code",
-                          value: "226001"
+                          value: this.state.postalCode
                         }
                       ]}
                     />
@@ -161,7 +223,7 @@ componentDidMount() {
                        
                       </Col>
                     </Row>
-                    <Button bsStyle="info" pullRight fill type="submit">
+                    <Button onClick={this.saveUserDescription} bsStyle="info" pullRight fill>
                       Update Profile
                     </Button>
                     <div className="clearfix" />

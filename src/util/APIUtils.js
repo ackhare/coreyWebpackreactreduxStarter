@@ -71,7 +71,19 @@ export function checkUsernameAvailability(username) {
         method: 'GET'
     });
 }
-
+export function getUserDescriptionFromServer(username) {
+    return request({
+        url: API_BASE_URL + "/user/getUserDescription/"+ username,
+        method: 'GET'
+    });
+}
+export function saveUserDescription(username,userDescriptionRequest) {
+    return request({
+        url: API_BASE_URL + "/user/saveOrUpdateUserDescription/"+username,
+        method: 'POST',
+        body: JSON.stringify(userDescriptionRequest)
+    });
+}
 export function checkEmailAvailability(email) {
     return request({
         url: API_BASE_URL + "/user/checkEmailAvailability?email=" + email,
