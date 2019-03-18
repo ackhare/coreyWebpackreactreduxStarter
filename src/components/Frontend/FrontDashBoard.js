@@ -128,6 +128,7 @@ render() {
             <NavLinks isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser}></NavLinks>
         </div>
     </nav>
+    
     <Switch>
 
 <Route exact path="/login"

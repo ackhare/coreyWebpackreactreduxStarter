@@ -9,7 +9,7 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div className="container conatiner-login-form">
+      <div className="container conatiner-login-form container-full-width">
       <div className="row" >
        <h3>Login Arunya Admin Panel</h3>
        <div className="meesaage sub-header-message"></div>

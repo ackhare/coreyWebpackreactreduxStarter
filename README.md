@@ -53,3 +53,16 @@ https://codeseven.github.io/toastr/demo.html
 https://github.com/jpuri/react-draft-wysiwyg
 https://github.com/andrerpena/react-mde
 https://stackoverflow.com/questions/34226076/why-is-my-onclick-being-called-on-render-react-js
+https://codesandbox.io/s/vm1k17ymq0
+
+https://alligator.io/react/live-search-with-axios/(important)
+https://alligator.io/react/react-admin-interface/
+
+https://upmostly.com/tutorials/react-hooks-simple-introduction/
+
+https://www.codementor.io/kakarganpat/how-to-setup-react-and-node-js-in-a-project-koxwqbssl
+http://4youngpadawans.com/upload-file-to-server-react-and-spring/
+//All below are for image uploader
+https://codepen.io/iiCe89/pen/GZVjBp
+https://codepen.io/craigmdennis/pen/zNeorQ
+https://codepen.io/hartzis/pen/VvNGZP

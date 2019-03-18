@@ -5,15 +5,14 @@ import Card from "../../components/Card/Card";
 import Button from "../../components/CustomButton/CustomButton";
 import Tabs from "../../components/Tabs/Tabs";
 import axios from 'axios';
+import './Upgrade.css';
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import API from '../../utils/api';
-import { EditorState, convertToRaw } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import draftToHtml from 'draftjs-to-html';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import htmlToDraft from 'html-to-draftjs';
+import ReactMde from "react-mde";
+import * as Showdown from "showdown";
+import "react-mde/lib/styles/css/react-mde-all.css";
 class Basic extends React.Component{
   constructor() {
     super();
@@ -219,21 +218,73 @@ class TabContent extends React.Component
   constructor(props) {
     super(props);
     this.state = {
-      editorState: EditorState.createEmpty()
-    }
-    this.onEditorStateChange = this.onEditorStateChange.bind(this);
+      value: "**Hello world!!!**",
+      tab: "write"
+    };
     this.saveContent = this.saveContent.bind(this);
-  }
-  onEditorStateChange(editorState)
-  {
-    
-    this.setState({
-      editorState:editorState
+    this.converter = new Showdown.Converter({
+      tables: true,
+      simplifiedAutoLink: true,
+      strikethrough: true,
+      tasklists: true
     });
   }
-aaa()
+//         super(props);
+//         this.handleMenuClick = this.handleMenuClick.bind(this);
+//     }
+
+//     handleMenuClick({ key }) {
+//       if(key === "logout") {
+//         this.props.onLogout();
+//       }
+//     
+  handleValueChange = value => {
+    this.setState({ value });
+  };
+
+  handleTabChange = tab => {
+    this.setState({ tab });
+  };
+  fetchData() {
+  API.get('/parts/getParts?slug=about')
+    .then(res => {
+      console.log("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+      console.log(res.data);
+      var converter = new Showdown.Converter();
+      let html      = converter.makeMarkdown(res.data.html);
+      console.log(html);
+      this.setState({value:html });
+      this.setState({tab:'write' });
+    })
+  
+  }
+  componentDidMount() {
+    this.fetchData();
+  
+  }
+saveContent()
 {
-  console.log(draftToHtml(convertToRaw(this.state.editorState.getCurrentContent())))
+  var converter = new Showdown.Converter(),
+    text      = '# hello, markdown!',
+    html      = converter.makeHtml(this.state.value);
+  console.log(html)
+  console.log(this.state.tab);
+  var headers = {
+    'Content-Type': 'application/json'
+}
+let values={};
+values.html=html;
+values.slug="about"
+
+  API.post("/parts/getPartssAndUpdate?slug=about", values,{headers: headers})
+  .then(res => {
+    window.scrollTo(0, 0)
+    console.log(res);
+    console.log(res.data);
+ 
+  }) .catch(error => {
+  })
+
 }
   render() {
     const fetchRandomUser = () => API.get("books");
@@ -253,17 +304,21 @@ aaa()
         {this.props.activeTab.name === 'Tab 3' ?
         <section className="panel panel-success">
           <h2 className="panel-heading">About Page</h2>
-          <Editor
-          editorState={this.state.editorState}
-          wrapperClassName="demo-wrapper"
-          editorClassName="demo-editor"
-          onEditorStateChange={this.onEditorStateChange}
+          <div className="container container-full-width">
+        <ReactMde
+          onChange={this.handleValueChange}
+          onTabChange={this.handleTabChange}
+          value={this.state.value}
+          generateMarkdownPreview={markdown =>
+            Promise.resolve(this.converter.makeHtml(markdown))
+          }
+          selectedTab={this.state.tab}
         />
-        {/* <textarea
-          disabled
-          value={draftToHtml(convertToRaw(this.state.editorState.getCurrentContent()))}
-        /> */}
-         <button onClick={this.saveContent}>show alert</button>;
+      </div>
+      <button onClick={this.saveContent}  className="btn btn-primary upgrade-form-submit">
+            Submit
+          </button>
+        
           </section>
         :null}
        

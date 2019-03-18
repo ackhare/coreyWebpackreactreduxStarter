@@ -13,13 +13,18 @@ import {
   BrowserRouter,
   Link
 } from 'react-router-dom';
+import { CloudinaryContext, Transformation, Image } from 'cloudinary-react';
+import { FileUploader } from "../../components/FileUploader/FileUploader.js";
 //https://react-bootstrap.github.io/components/navbar/
 export default class Content extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      gallery: []
   }
-  
+  }
+
   render() {
     let user="";
     console.log(this.props);
@@ -33,6 +38,7 @@ console.log(user);
     {
     return (
 <div>
+
 <h2>Collapsible Sidebar Using Bootstrap 3</h2>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -78,12 +84,41 @@ console.log(user);
               <i className="fa fa-google-plus-square" />
             </Button>
           </div>
+          
 
         }
 
       />
 
 <Link to="/admin"><i className="fa fa-arrow-right arrow"></i></Link>
+<h1>Galleria</h1>
+                <div className="gallery">
+                    <CloudinaryContext cloudName="dsz6drsin">
+                        {
+                            this.state.gallery.map(data => {
+                                return (
+                                    <div className="responsive" key={data.public_id}>
+                                        <div className="img">
+                                            <a target="_blank" href={`https://res.cloudinary.com/dsz6drsin/image/upload/${data.public_id}.jpg`}>
+                                                <Image publicId={data.public_id}>
+                                                    <Transformation
+                                                        crop="scale"
+                                                        width="300"
+                                                        height="200"
+                                                        dpr="auto"
+                                                        responsive_placeholder="blank"
+                                                    />
+                                                </Image>
+                                            </a>
+                                            <div className="desc">Created at {data.created_at}</div>
+                                        </div>
+                                    </div>
+                                )
+                            })
+                        }
+                    </CloudinaryContext>
+                    <div className="clearfix"></div>
+                </div>
 </div></div>
       );
     }
