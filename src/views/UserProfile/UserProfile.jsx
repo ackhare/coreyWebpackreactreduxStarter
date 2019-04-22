@@ -104,6 +104,7 @@ updateAvatar(fileLocation) {
 }
 
 componentDidMount() {
+  console.log("userDescription");
   this.fetchUserDescription();
 }
 

@@ -71,6 +71,7 @@ class FrontDashBoard extends React.Component {
   }
 
   componentDidMount() {
+    console.log("c khasgckasvcaskcgasclasclgo");
     this.loadCurrentUser();
   }
 
@@ -109,8 +110,8 @@ render() {
   return (
 
 <div className="wrapperFront">
-
-<SideBar/>
+{/* 
+<SideBar/> */}
 
 <div id="contentFront">
 
@@ -118,11 +119,11 @@ render() {
         <div className="container-fluid">
 
             <div className="navbar-header">
-                          <button type="button" id="sidebarCollapseFront" className="navbar-btn" onClick={this.toggleSideBar}>
+                          {/* <button type="button" id="sidebarCollapseFront" className="navbar-btn" onClick={this.toggleSideBar}>
                     <span></span>
                     <span></span>
                     <span></span>
-                </button>
+                </button> */}
 
             </div>
             <NavLinks isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser}></NavLinks>
@@ -139,7 +140,7 @@ render() {
 <Route exact path="/users/:username"
   render={(props) => <Profile isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props}  />}>
 </Route>
-<Route  exact path="/about"  component={AboutPage}></Route>
+{/* <Route  exact path="/about"  component={AboutPage}></Route> */}
 <Route  path="/" render={(props) => <Content isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props}  />}></Route>
 {/* <Route component={NotFound}></Route> */}
 </Switch>

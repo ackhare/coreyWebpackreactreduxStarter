@@ -29,7 +29,7 @@ export default class NavLinks extends Component{
             <ul className="nav navbar-nav navbar-right">
               <li className="active"><a href="#">Home</a></li>
               <li><Link to="/profile">Profile</Link></li>
-              <li><Link to="/about">About</Link></li>
+              {/* <li><Link to="/about">About</Link></li> */}
               <li><Link to="/logout">Log Out</Link></li>
               {/* <li className="dropdown">
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span className="caret"></span></a>

@@ -8,10 +8,10 @@ export default class SideBar extends Component{
 
 <nav id="sidebarFront">
     <div className="sidebar-header">
-        <h3>Bootstrap Sidebar</h3>
+        <h3>Arunya Sidebar</h3>
     </div>
 
-    <ul className="list-unstyled components">
+    {/* <ul className="list-unstyled components">
         <p>Dummy Heading</p>
         <li className="active">
             <a className="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
@@ -36,7 +36,7 @@ export default class SideBar extends Component{
         <li>
             <a href="#">Contact</a>
         </li>
-    </ul>
+    </ul> */}
 
 </nav>
 

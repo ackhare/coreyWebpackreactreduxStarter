@@ -12,13 +12,14 @@ import FrontDashBoard from "../components/Frontend/FrontDashBoard";
 import PrivateRoute from "../components/Frontend/PrivateRoute";
 import { NavLink, Route, Switch,withRouter } from "react-router-dom";
 import { getCurrentUser, signup } from '../util/APIUtils';
+import LoadingIndicator from '../components/Frontend/LoadingIndicator';
 import { ACCESS_TOKEN } from '../constants';
 class MainRoutes extends Component{
   constructor(props) {
     super(props);
     this.state = {
       currentUser: null,
-      isAuthenticated: false,
+      isAuthenticated: null,
       isLoading: false
     }
 
@@ -44,23 +45,32 @@ class MainRoutes extends Component{
     });
     getCurrentUser()
     .then(response => {
+      console.log(response);
       this.setState({
         currentUser: response,
         isAuthenticated: true,
         isLoading: false
       });
     }).catch(error => {
+      console.log("error");
       this.setState({
-        isLoading: false
+        isLoading: false,
+        isAuthenticated: false
       });
     });
   }
 
   componentDidMount() {
+    console.log("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
     this.loadCurrentUser();
   }
 render()
 {
+  if(this.state.isAuthenticated==null) {
+    return <LoadingIndicator />
+  }
+  else
+  {
   return(
 <div>
     <Switch>
@@ -74,6 +84,7 @@ render()
     </Switch>
     </div>
   );
+}
 }
 }
 export default withRouter(MainRoutes);

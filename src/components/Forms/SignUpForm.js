@@ -17,7 +17,7 @@ export default class SignUpForm extends Component {
     return (
       <div className="container conatiner-signup-form">
       <div className="row" >
-       <h3>Sign Up For Arunya Admin Panel</h3>
+       <h5>Sign Up For Arunya Admin Panel</h5>
        <div className="meesaage sub-header-message"></div>
 <Formik  enableReinitialize={true}
         //initialValues={this.state.valuesField}
@@ -71,7 +71,7 @@ export default class SignUpForm extends Component {
 
         <form className="signup-form" onSubmit={handleSubmit}>
         <div className="form-group">
-          <input className="form-control col-md-offset-4"
+          <input className="form-control"
             type="email"
             name="email"
             onChange={handleChange}
@@ -83,7 +83,7 @@ export default class SignUpForm extends Component {
           {errors.email}
           <div className="form-group ">
 
-          <input className="form-control col-md-offset-4"
+          <input className="form-control"
             type="text"
             name="username"
             onChange={handleChange}
@@ -95,7 +95,7 @@ export default class SignUpForm extends Component {
           </div>
           <div className="form-group">
 
-          <input className="form-control col-md-offset-4"
+          <input className="form-control"
             type="text"
             name="name"
             onChange={handleChange}
@@ -107,7 +107,7 @@ export default class SignUpForm extends Component {
           </div>
           <div className="form-group">
 
-          <input className="form-control col-md-offset-4"
+          <input className="form-control"
             type="text"
             name="password"
             onChange={handleChange}
@@ -118,7 +118,7 @@ export default class SignUpForm extends Component {
           {errors.password}
           </div>
           <div className="form-group">
-          <input className="form-control col-md-offset-4"
+          <input className="form-control"
             rows="5"
             id="rePassword"
             name="rePassword"

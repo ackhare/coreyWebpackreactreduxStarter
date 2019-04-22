@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/about-page.css';
 
 // Since this component is simple and static, there's no parent container for it.
 export default class AboutPage extends Component{
