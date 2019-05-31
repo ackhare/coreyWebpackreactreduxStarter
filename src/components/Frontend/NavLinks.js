@@ -22,30 +22,20 @@ export default class NavLinks extends Component{
     {
     return (
 
-
-<div id="navbar" className="navbar-collapse collapse">
-<span className="col-md-offset-4 label label-success
-             ">Welcome {currentUserName}</span>
+  <div className="row">
+  <div className="col-md-6">
+<div className="nav"><div className="header-simple">Welcome {currentUserName}</div>
+             </div>   </div>
+             <div className="col-md-6">
             <ul className="nav navbar-nav navbar-right">
               <li className="active"><a href="#">Home</a></li>
-              <li><Link to="/profile">Profile</Link></li>
-              {/* <li><Link to="/about">About</Link></li> */}
+              {/* <li><Link to="/profile">Profile</Link></li> */}
               <li><Link to="/logout">Log Out</Link></li>
-              {/* <li className="dropdown">
-                <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span className="caret"></span></a>
-                <ul className="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li className="dropdown-header">Nav header</li>
-                  <li><a href="#">Separated link</a></li>
-                  <li><a href="#">One more separated link</a></li>
-                </ul>
-              </li> */}
+
             </ul>
 
           </div>
+          </div>   
 
     );
     }

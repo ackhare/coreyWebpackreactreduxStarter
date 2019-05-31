@@ -77,9 +77,9 @@ export function getUserDescriptionFromServer(username) {
         method: 'GET'
     });
 }
-export function saveUserDescription(username,userDescriptionRequest) {
+export function saveUserDescription(userDescriptionRequest) {
     return request({
-        url: API_BASE_URL + "/user/saveOrUpdateUserDescription/"+username,
+        url: API_BASE_URL + "/user/saveOrUpdateUserDescription",
         method: 'POST',
         body: JSON.stringify(userDescriptionRequest)
     });

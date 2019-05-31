@@ -19,14 +19,14 @@ class TabContent extends React.Component
     const { editorState } = this.state;
     return (
       <div>
-        {this.props.activeTab.name === 'Tab 1' ?
+        {this.props.activeTab.name === 'Author Profile' ?
         <section className="panel panel-success">
           <h2 className="panel-heading">Content 1</h2>
           <p className="panel-body">Bacon ham hock kevin boudin rump leberkas. Spare ribs kielbasa shankle hamburger tongue jerky pork chop bresaola. Shoulder pork belly short loin strip steak prosciutto frankfurter. Beef kevin t-bone venison pork belly meatball chuck short loin bresaola doner picanha. Cupim short ribs short loin brisket bacon rump porchetta venison t-bone drumstick pork chop hamburger meatball. Pork loin frankfurter shankle pork picanha pastrami. Pork loin pancetta venison short loin frankfurter.</p>
           <p className="panel-body">Shoulder doner swine ball tip venison porchetta. Capicola beef meatball, tri-tip strip steak kevin jowl cupim venison. Tongue fatback ribeye leberkas biltong t-bone. Pancetta frankfurter meatloaf, pig t-bone picanha ham fatback chicken drumstick short loin cupim short ribs cow. Beef short ribs ribeye meatball filet mignon andouille frankfurter swine turducken bresaola spare ribs cupim picanha cow. Drumstick tenderloin ham hock shoulder ground round, beef strip steak flank. Salami rump beef ground round.</p>
          </section>
         :null}
-        {this.props.activeTab.name === 'Tab 2' ?
+        {/* {this.props.activeTab.name === 'Tab 2' ?
         <section className="panel panel-warning">
           <h2 className="panel-heading">Content 2</h2>
           <p className="panel-body">Atlantic herring jellynose fish Siamese fighting fish pollock: cobbler snakehead sea raven! Freshwater shark sergeant major clingfish sweeper galjoen fish mudfish longjaw mudsucker. Death Valley pupfish pomfret electric ray zingel African glass catfish squawfish yellowtail snapper grunt sculpin.</p>
@@ -41,7 +41,7 @@ class TabContent extends React.Component
           wrapperClassName="demo-wrapper"
           editorClassName="demo-editor"
           onEditorStateChange={this.onEditorStateChange}
-        />
+        /> */}
         <textarea
           disabled
           value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}

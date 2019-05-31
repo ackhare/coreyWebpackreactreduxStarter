@@ -6,7 +6,21 @@
 {
 width: 100%;
 }
-
+.header-simple
+{
+    margin-top: 3%;
+}
+.proceedToAdminBtn
+{
+    color: #fff !important;
+    background-color: blue !important;
+    width: 100%;
+}
+.infoDescription{
+    word-wrap: break-word;
+    width: 100px;
+    min-width:100px;
+}
 body {
     font-family: 'Poppins', sans-serif;
     background: #fafafa;

@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import { getCurrentUser,getUserDescriptionFromServer } from '../../util/APIUtils';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { getCurrentUser,getUserDescriptionFromServer,saveUserDescription } from '../../util/APIUtils';
 import {getUserDescription,setUserDescriptionForm } from '../../pojo/UserDescription';
 import {
   Grid,
@@ -27,29 +29,89 @@ class UserProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoading:true,
         pic: null,
         email:null,
         countrty:null,
         city:null,
         postalCode:null,
+        fullname:null,
         company:null,
         address:null,
-        username:null
+        username:null,
+        infodDescription:null,
+        usernameCard:null,
+        companyCard:null,
+        infoDescriptionCard:null,
+        fullnameCard:null
+
+
+        
     }
   
   this.updateAvatar = this.updateAvatar.bind(this);
-  this.fetchIntialAvatar = this.fetchIntialAvatar.bind(this);
+   this.saveUserDescription = this.saveUserDescription.bind(this);
+  //this.fetchIntialAvatar = this.fetchIntialAvatar.bind(this);
+  this.handleChangeCompany = this.handleChangeCompany.bind(this);
+  this.handleChangeFullName=this.handleChangeFullName.bind(this);
+  this.handleChangeCity=this.handleChangeCity.bind(this);
+  this.handleChangePostalCode=this.handleChangePostalCode.bind(this);
+  this.handleChangeCountry=this.handleChangeCountry.bind(this);
+  this.handleChangeAddress=this.handleChangeAddress.bind(this);
 }
-fetchIntialAvatar()
- {
+notify = () => toast("Wow so easy !");
+handleChangeInfoDescription(e)
+{
+  this.setState({
+    infoDescription: e.target.value
+  });
+}
+handleChangeCompany(e)
+{
+  this.setState({
+    company: e.target.value
+  });
+}
+handleChangeFullName(e)
+{
+  this.setState({
+    fullname: e.target.value
+  });
+}
+handleChangeCity(e)
+{
+  this.setState({
+    city: e.target.value
+  });
+}
+handleChangePostalCode(e)
+{
+  this.setState({
+    postalCode: e.target.value
+  });
+}
+handleChangeCountry(e)
+{
+  this.setState({
+    country: e.target.value
+  });
+}
+handleChangeAddress(e)
+{
+  this.setState({
+    address: e.target.value
+  });
+}
 
- }
  fetchUserDescription()
  {
   getCurrentUser()
   .then(response => {
     console.log(response); 
     var currentUser=response.username;
+    this.setState({
+      username: currentUser
+    });
     getUserDescriptionFromServer(currentUser).then(response1 => {
 
     var userDescription =getUserDescription(response1); 
@@ -59,7 +121,10 @@ fetchIntialAvatar()
       company: userDescription.company
     });
     this.setState({
-      username: userDescription.username
+      country: userDescription.country
+    });
+    this.setState({
+      username: currentUser
     });
     this.setState({
       email: userDescription.email
@@ -72,14 +137,21 @@ fetchIntialAvatar()
 this.setState({
   address: userDescription.address
 });
-
+this.setState({
+  pic: userDescription.imageUrl
+});
 this.setState({
   city: userDescription.city
 });
 this.setState({
   postalCode: userDescription.postalCode
 });
-
+this.setState({
+  infoDescription: userDescription.infoDescription
+});
+this.setState({
+  isLoading: false
+});
 
     }).catch(error1 => {
       this.setState({
@@ -95,7 +167,60 @@ this.setState({
  }
  saveUserDescription()
  {
+   let self=this;
+   self.setState({
+    isLoading: true
+  });
   var company = document.getElementsByClassName("company")[0].value;
+  var fullName = document.getElementsByClassName("fullname")[0].value;
+  var address = document.getElementsByClassName("address")[0].value;
+  var country = document.getElementsByClassName("country")[0].value;
+  var city = document.getElementsByClassName("city")[0].value;
+  var postalCode = document.getElementsByClassName("postalCode")[0].value;
+  var infoDescription = document.getElementsByClassName("infoDescription")[0].value;
+  var userDetail={};
+  userDetail.fullname=fullName;
+  userDetail.address=address;
+  userDetail.city=city;
+  userDetail.postalCode=postalCode;
+  userDetail.companyName=company;
+  userDetail.country=country;
+  userDetail.infoDescription=infoDescription;
+  userDetail.username="chetan";
+  console.log(userDetail);
+  saveUserDescription(userDetail).then(response => {
+    console.log(response);
+    self.setState({
+      isLoading: false
+    });
+    toast.success('You have succefully updated your details', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true
+      });
+  }).catch(error=> {
+    console.log(error);
+    self.setState({
+      isLoading: false
+    });
+    toast.error('There was some error, Please contact Administrator', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true
+      });
+  }).finally(function () {
+    self.setState({
+      isLoading: false
+    });
+  });
+
+  
  }
 updateAvatar(fileLocation) {
     this.setState({
@@ -104,19 +229,36 @@ updateAvatar(fileLocation) {
 }
 
 componentDidMount() {
-  console.log("userDescription");
+  //console.log("userDescription");
+  this.notify;
   this.fetchUserDescription();
 }
 
 
 
+
   render() {
+
     if(this.state.isLoading) {
       return <LoadingIndicator />
     }
     else
     return (
+
+      
+      
       <div className="wrapper">
+      <ToastContainer
+position="top-right"
+autoClose={5000}
+hideProgressBar
+newestOnTop
+closeOnClick
+rtl={false}
+pauseOnVisibilityChange
+draggable
+pauseOnHover
+/>
       <Sidebar {...this.props} />
       <div id="main-panel" className="main-panel" ref="mainPanel">
         <Header {...this.props} />
@@ -137,6 +279,7 @@ componentDidMount() {
                           bsClass: "form-control company",
                           placeholder: "Company",
                           value: this.state.company,
+                          onChange: this.handleChangeCompany
                         
                         },
                         {
@@ -165,7 +308,8 @@ componentDidMount() {
                           type: "text",
                           bsClass: "form-control fullname",
                           placeholder: "Full name",
-                          value: this.state.fullName
+                          value: this.state.fullname,
+                          onChange: this.handleChangeFullName
                         },
                       ]}
                     />
@@ -177,8 +321,8 @@ componentDidMount() {
                           type: "text",
                           bsClass: "form-control address",
                           placeholder: "Home Adress",
-                          value:
-                          this.state.address
+                          value:this.state.address,
+                          onChange: this.handleChangeAddress
                         }
                       ]}
                     />
@@ -190,21 +334,24 @@ componentDidMount() {
                           type: "text",
                           bsClass: "form-control city",
                           placeholder: "City",
-                          value: this.state.city
+                          value: this.state.city,
+                          onChange: this.handleChangeCity
                         },
                         {
                           label: "Country",
                           type: "text",
                           bsClass: "form-control country",
                           placeholder: "Country",
-                          value: this.state.country
+                          value: this.state.country,
+                          onChange: this.handleChangeCountry
                         },
                         {
                           label: "Postal Code",
                           type: "number",
                           bsClass: "form-control postalCode",
                           placeholder: "ZIP Code",
-                          value: this.state.postalCode
+                          value: this.state.postalCode,
+                          onChange: this.handleChangePostalCode
                         }
                       ]}
                     />
@@ -216,9 +363,10 @@ componentDidMount() {
                           <FormControl
                             rows="5"
                             componentClass="textarea"
-                            bsClass="form-control"
+                            bsClass="form-control infoDescription"
                             placeholder="Here can be your description"
-                            value="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."
+                            value={this.state.infoDescription || ""}
+                            onChange={this.handleChangeInfoDescription.bind(this)}
                           />
                         </FormGroup>
                        
@@ -236,15 +384,12 @@ componentDidMount() {
               <UserCard
                 bgImage={"https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400"}
                 avatar={this.state.pic}
-                name="Mike Andrew"
-                userName="michael24"
+                name={this.state.fullname}
+                userName={this.state.username}
+                company={this.state.company}
                 description={
-                  <span>
-                    "Lamborghini Mercy
-                    <br />
-                    Your chick she so thirsty
-                    <br />
-                    I'm in that two seat Lambo"
+                  <span className="infoDescription">
+                  {this.state.infoDescription}
                   </span>
                 }
                 socials={
@@ -261,7 +406,7 @@ componentDidMount() {
                   </div>
                 }
               />
-               <FileUploader  updateAvatar={(e) => this.updateAvatar(e)}/>
+               <FileUploader  currentUser={this.state.username} updateAvatar={(e) => this.updateAvatar(e)}/>
             </Col>
           </Row>
         </Grid>

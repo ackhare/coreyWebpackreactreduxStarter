@@ -7,3 +7,9 @@
     margin: 2%;
     margin-left: 41%;
 }
+.proceedToAdminBtn
+{
+    color: #fff;
+    background-color: blue;
+    width: 100%;
+}

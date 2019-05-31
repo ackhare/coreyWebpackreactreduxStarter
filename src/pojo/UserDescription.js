@@ -1,4 +1,5 @@
 export function getUserDescription(data) {
+console.log(data);
 var userDescription={};
 if(data.username!==undefined)
 {
@@ -6,12 +7,15 @@ if(data.username!==undefined)
  userDescription.infoTitle=data.infoTitle;
  userDescription.infoDescription=data.infoDescription;
  userDescription.company=data.companyName;
- userDescription.city=data.infoTitle;
+ userDescription.city=data.city;
  userDescription.postalCode=data.postalCode;
  userDescription.address=data.address;
  userDescription.fullname=data.fullname;
  userDescription.username=data.username;
  userDescription.email=data.email;
+ userDescription.country=data.country;
+ userDescription.imageUrl=data.downloadUrl;
+
  return userDescription;
 }
 else

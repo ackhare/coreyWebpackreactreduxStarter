@@ -8,12 +8,12 @@ import Notifications from "../views/Notifications/Notifications";
 import Upgrade from "../views/Upgrade/Upgrade";
 
 const dashboardRoutes = [
-  {
-    path: "/admin/dashboard",
-    name: "Dashboard",
-    icon: "pe-7s-graph",
-    component: Dashboard
-  },
+  // {
+  //   path: "/admin/dashboard",
+  //   name: "Dashboard",
+  //   icon: "pe-7s-graph",
+  //   component: Dashboard
+  // },
   {
     path: "/admin/user",
     name: "User Profile",

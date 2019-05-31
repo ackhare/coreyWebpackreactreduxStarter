@@ -19,6 +19,8 @@ export class UserCard extends Component {
                 {this.props.name}
                 <br />
                 <small>{this.props.userName}</small>
+                <br />
+                <small>{this.props.company}</small>
               </h4>
             </a>
           </div>

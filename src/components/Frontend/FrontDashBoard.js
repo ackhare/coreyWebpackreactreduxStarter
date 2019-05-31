@@ -8,6 +8,7 @@ import {
   Link
 } from 'react-router-dom';
 import "./Front.css";
+
 import { getCurrentUser, signup } from '../../util/APIUtils';
 import { ACCESS_TOKEN } from '../../constants';
 import Header from './Header';
@@ -99,10 +100,12 @@ class FrontDashBoard extends React.Component {
   handleLogin() {
 
     this.loadCurrentUser();
-    console.log("You are login");
-    this.props.history.push("/");
-  }
 
+    this.props.history.push({
+    pathname: '/',
+    state: { detail: 'login'}
+  });
+  }
 render() {
   if(this.state.isLoading) {
     return <LoadingIndicator />

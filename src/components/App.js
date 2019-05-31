@@ -2,12 +2,14 @@
 
 
 
-import FuelSavingsPage from "./containers/FuelSavingsPage";
+
 import HomePage from "./HomePage";
 import NotFoundPage from "./NotFoundPage";
 import PropTypes from "prop-types";
 import React from "react";
 import { hot } from "react-hot-loader";
+//import { toast } from 'react-toastify';
+//import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -15,7 +17,7 @@ import MainRoutes from "./MainRoutes";
 class App extends React.Component {
 
   render() {
-    console.log("zzzzzzzzzzzzzzzzzzzzzzzzzzz");
+    //toast.configure();
     return (
       <div>
 <MainRoutes></MainRoutes>

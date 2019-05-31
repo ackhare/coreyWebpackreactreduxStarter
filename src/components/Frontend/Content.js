@@ -6,6 +6,8 @@ import UserCard from "../UserCard/UserCard";
 import avatar from "../../assets/img/faces/unknown.png";
 import { style } from "../../variables/Variables.jsx";
 import NotificationSystem from "react-notification-system";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   Route,
   withRouter,
@@ -13,8 +15,8 @@ import {
   BrowserRouter,
   Link
 } from 'react-router-dom';
-import { CloudinaryContext, Transformation, Image } from 'cloudinary-react';
 import { FileUploader } from "../../components/FileUploader/FileUploader.js";
+
 //https://react-bootstrap.github.io/components/navbar/
 export default class Content extends React.Component {
 
@@ -27,8 +29,9 @@ export default class Content extends React.Component {
 
   render() {
     let user="";
-    console.log(this.props);
-    console.log(this.props.isAuthenticated);
+
+
+   
     if(this.props.isAuthenticated)
     {
 user=this.props.currentUser;
@@ -48,9 +51,46 @@ Welcome To Arunya Frontend
     }
     else
     {
-      // <Link to={`${match.url}/${user.id}`} className="column card">
+
+      //The below piece of code checks that if login for the first time from fronTdashboard
+      //handleLogin and with any refreshing or redirection it should not be valled again and again
+      if(this.props.location.state !==undefined)
+      {
+
+      if(this.props.location.state.detail==="login")
+      { 
+        
+//https://stackoverflow.com/questions/45139189/remove-state-for-current-location
+          this.props.history.replace({
+              pathname: this.props.location.pathname,
+              state: {}
+          });
+      
+      toast.success('You are login into Arunya frontend panel', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true
+        });
+      }
+      }
+      
       return(
+
         <div className="row">
+        <ToastContainer
+position="top-right"
+autoClose={5000}
+hideProgressBar
+newestOnTop
+closeOnClick
+rtl={false}
+pauseOnVisibilityChange
+draggable
+pauseOnHover
+/>
         <div className="col-md-4 col-md-offset-4">
         <UserCard
         bgImage="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400"
@@ -84,13 +124,9 @@ Welcome To Arunya Frontend
 
       />
 
-
+<Link to="/admin"><div className="btn btn-primary proceedToAdminBtn">Proceed To Admin Panel</div></Link>
 
 </div>
-<div className="col-md-4">
-<Link to="/admin"><i className="fa fa-arrow-right arrow"></i></Link>
-</div>
-
 </div>
       );
     }
