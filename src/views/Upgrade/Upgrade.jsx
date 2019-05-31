@@ -27,6 +27,7 @@ var tabData = [
     }
   
     handleClick = (tab) => {
+      
      // this.setState({activeTab: tab});
     }
     render() {

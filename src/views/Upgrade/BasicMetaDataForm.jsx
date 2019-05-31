@@ -8,6 +8,7 @@ import axios from 'axios';
 import './Upgrade.css';
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import ToolTip from "../../components/Tooltip/ToolTip";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import API from '../../utils/api';
 import ReactMde from "react-mde";
@@ -18,8 +19,10 @@ export class BasicMetaDataForm extends React.Component{
     super();
     this.state = {
       valuesField: [],
-      isLoading: false
+      isLoading: false,
+      hover:false
     };
+    
 }
 fetchData() {
   this.setState({isLoading: true});
@@ -35,6 +38,14 @@ componentDidMount() {
   this.fetchData();
 
 }
+
+handleMouseIn() {
+  this.setState({ hover: true })
+}
+
+handleMouseOut() {
+  this.setState({ hover: false })
+}
 render() {
   if (this.state.isLoading) {
     return <p>Loading…</p>;
@@ -44,7 +55,10 @@ return (
 
   <div className="container">
    <div className="row">
-    <h3>Arunya blog metadata</h3>
+   <div className="nav panelBlock">
+    <span className="textTitle">Arunya blog metadata</span> <ToolTip toolTipText="This form will update the DevArunya Blog"/>
+    </div>
+
     <div className="meesaage sub-header-message"></div>
     <Formik  enableReinitialize={true}
         initialValues={this.state.valuesField}
@@ -136,7 +150,7 @@ return (
           />
           {errors.siteTitle}
           </div>
-          <div className="form-group">
+          {/* <div className="form-group">
           <label>Author Name</label>
           <input className="form-control"
             type="text"
@@ -157,7 +171,7 @@ return (
             value={values.pathPrefix}
           />
           {errors.pathPrefix}
-          </div>
+          </div> */}
           <div className="form-group">
           <label>Author Description</label>
           <textArea className="form-control"
@@ -180,7 +194,7 @@ return (
           />
           {errors.authorName}
           </div>
-          <div className="form-group">
+          {/* <div className="form-group">
           <label>Footer Note</label>
           <input className="form-control"
             type="text"
@@ -190,7 +204,7 @@ return (
             value={values.footerNote}
           />
           {errors.footerNote}
-          </div>
+          </div> */}
           <div className="form-group">
           <label>Info Title Note</label>
           <input className="form-control"

@@ -15,6 +15,7 @@ import {
   FormControl
 } from "react-bootstrap";
 import axios from 'axios';
+import './UserProfile.css';
 import { Card } from "../../components/Card/Card.jsx";
 import { FormInputs } from "../../components/FormInputs/FormInputs.jsx";
 import { UserCard } from "../../components/UserCard/UserCard.jsx";
@@ -23,7 +24,7 @@ import API from '../../utils/api';
 import avatar from "../../assets/img/faces/face-3.jpg";
 import { FileUploader } from "../../components/FileUploader/FileUploader";
 import LoadingIndicator from '../../components/Frontend/LoadingIndicator';
-
+import ToolTip from '../../components/ToolTip/ToolTip';
 class UserProfile extends Component {
 
   constructor(props) {
@@ -262,9 +263,13 @@ pauseOnHover
       <Sidebar {...this.props} />
       <div id="main-panel" className="main-panel" ref="mainPanel">
         <Header {...this.props} />
+
       <div className="content">
-        <Grid fluid>
+      <span className="shiftBit"><ToolTip toolTipText="This form will update the user profile"/></span>
+
+             <Grid fluid>
           <Row>
+          
             <Col md={8}>
               <Card
                 title="Edit Profile"
@@ -280,7 +285,6 @@ pauseOnHover
                           placeholder: "Company",
                           value: this.state.company,
                           onChange: this.handleChangeCompany
-                        
                         },
                         {
                           label: "Username",
@@ -392,19 +396,19 @@ pauseOnHover
                   {this.state.infoDescription}
                   </span>
                 }
-                socials={
-                  <div>
-                    <Button simple>
-                      <i className="fa fa-facebook-square" />
-                    </Button>
-                    <Button simple>
-                      <i className="fa fa-twitter" />
-                    </Button>
-                    <Button simple>
-                      <i className="fa fa-google-plus-square" />
-                    </Button>
-                  </div>
-                }
+                // socials={
+                //   <div>
+                //     <Button simple>
+                //       <i className="fa fa-facebook-square" />
+                //     </Button>
+                //     <Button simple>
+                //       <i className="fa fa-twitter" />
+                //     </Button>
+                //     <Button simple>
+                //       <i className="fa fa-google-plus-square" />
+                //     </Button>
+                //   </div>
+                // }
               />
                <FileUploader  currentUser={this.state.username} updateAvatar={(e) => this.updateAvatar(e)}/>
             </Col>

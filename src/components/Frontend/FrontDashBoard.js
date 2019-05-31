@@ -127,10 +127,10 @@ render() {
                     <span></span>
                     <span></span>
                 </button> */}
-
             </div>
             <NavLinks isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser}></NavLinks>
         </div>
+        
     </nav>
     
     <Switch>
@@ -148,7 +148,7 @@ render() {
 {/* <Route component={NotFound}></Route> */}
 </Switch>
    </div>
-
+   
 </div>
   );
 }
