@@ -1,7 +1,7 @@
 
 import React, { Component } from "react";
 import { Formik } from 'formik';
-import API from '../../utils/api';
+import API from '../../util/api';
 import { signup, checkUsernameAvailability, checkEmailAvailability } from '../../util/APIUtils';
 import './Signup.css';
 import { Link } from 'react-router-dom';

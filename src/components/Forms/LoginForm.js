@@ -1,7 +1,7 @@
 
 import React, { Component } from "react";
 import { Formik } from 'formik';
-import API from '../../utils/api';
+import API from '../../util/api';
 import { login } from '../../util/APIUtils';
 import { ACCESS_TOKEN } from '../../constants';
 import './Login.css'

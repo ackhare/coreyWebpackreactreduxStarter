@@ -20,7 +20,7 @@ import { Card } from "../../components/Card/Card.jsx";
 import { FormInputs } from "../../components/FormInputs/FormInputs.jsx";
 import { UserCard } from "../../components/UserCard/UserCard.jsx";
 import Button from "../../components/CustomButton/CustomButton.jsx";
-import API from '../../utils/api';
+import API from '../../util/api';
 import avatar from "../../assets/img/faces/face-3.jpg";
 import { FileUploader } from "../../components/FileUploader/FileUploader";
 import LoadingIndicator from '../../components/Frontend/LoadingIndicator';
