@@ -32,6 +32,7 @@ class Tags extends Component {
         super(props);
         this.state = {
             addEnable: false,
+            filterText:"",
             pic: null,
             email: null,
             countrty: null,
@@ -46,7 +47,8 @@ class Tags extends Component {
             companyCard: null,
             infoDescriptionCard: null,
             fullnameCard: null,
-            tagsCollection:[]
+            tagsCollection:[],
+            unMutatedtagsCollection:[]
 
 
 
@@ -78,6 +80,26 @@ class Tags extends Component {
     this.setState({
         addEnable: false
     });
+    }
+    handleChange(e)
+    {
+        console.log(e.target.value);
+        // this.setState({
+        //     unMutatedtagsCollection: this.state.tagsCollection
+        // });
+        this.setState({
+            filterText: e.target.value
+        });
+        let orignalColl=this.state.unMutatedtagsCollection;
+
+        
+        let finalColl=orignalColl.filter(element=> element.name.includes(e.target.value));
+        console.log(finalColl);
+        // this.setState({
+        //     tagsCollection: finalColl
+        // });
+
+
     }
     addTags(e)
     {
@@ -348,6 +370,7 @@ class Tags extends Component {
                             {/* <span className="shiftBit"><ToolTip toolTipText="This form will update the user profile" /></span> */}
                             <div className="col-md-2 shift-up">
                             <button type="button" onClick={this.toggleAddFeature} className="btn btn-primary proceedToAdminBtn"><i className="fa fa-plus" aria-hidden="true"></i>New</button>
+                            search : <input type="text" value={this.state.filterText} onChange={this.handleChange.bind(this)}/>
                             </div>
                             <div className="container-fluid">
                             <table id="example" className="table table-striped table-bordered dataTable" role="grid" aria-describedby="example_info">
@@ -370,7 +393,7 @@ class Tags extends Component {
 
                                         
                                     </tr>
-                                    {this.state.tagsCollection.map((item, i) => {
+                                    {this.state.filterText.length==0 ?this.state.tagsCollection.map((item, i) => {
     return [
         <tr key={i}>
           <td>
@@ -383,7 +406,24 @@ class Tags extends Component {
         </tr>
 
     ];
-  })}
+  }) :
+  
+  this.state.tagsCollection.filter(element=> element.name.includes(this.state.filterText)).map((item, i) => {
+    return [
+        <tr key={i}>
+          <td>
+            {item.name}
+          </td>
+          <td>
+          <i className="fa fa-pencil editPencilBtn" aria-hidden="true"></i>
+          <i onClick={this.deleteTags.bind(this,item.name)} className="fa fa-trash deleteTrash col-md-offset-1" aria-hidden="true"></i>
+          </td>
+        </tr>
+
+    ];
+  }) 
+  
+  }
                                 </tbody>
                                 <tfoot>
                                     {/* <tr><th rowspan="1" colspan="1">Name</th><th rowspan="1" colspan="1">Position</th><th rowspan="1" colspan="1">Office</th><th rowspan="1" colspan="1">Age</th><th rowspan="1" colspan="1">Start date</th><th rowspan="1" colspan="1">Salary</th></tr> */}
