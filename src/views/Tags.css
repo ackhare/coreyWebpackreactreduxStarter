@@ -1,0 +1,29 @@
+.noDisplay
+{
+    display: none
+}
+.addPlusBtn{
+    color: blue;
+    font-size: 30px !important;
+}
+.editPencilBtn{
+    color: black;
+    font-size: 20px !important;
+}
+.cancelMinusBtn{
+    color: red;
+    font-size: 30px !important;
+}
+.deleteTrash{
+    color: red;
+    font-size: 20px !important;
+}
+.proceedToAdminBtn {
+    color: #fff !important;
+    background-color: blue !important;
+    width: 30%;
+}
+.shift-up
+{
+    margin-bottom:20px;
+}

@@ -6,6 +6,8 @@ import Icons from "../views/Icons/Icons";
 import Maps from "../views/Maps/Maps";
 import Notifications from "../views/Notifications/Notifications";
 import Upgrade from "../views/Upgrade/Upgrade";
+import Tags from "../views/Tags";
+
 
 const dashboardRoutes = [
   // {
@@ -19,6 +21,12 @@ const dashboardRoutes = [
     name: "User Profile",
     icon: "pe-7s-user",
     component: UserProfile
+  },
+  {
+    path: "/admin/tags",
+    name: "Tags",
+    icon: "pe-7s-user",
+    component: Tags
   },
   // {
   //   path: "/admin/table",

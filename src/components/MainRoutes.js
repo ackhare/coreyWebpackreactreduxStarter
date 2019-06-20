@@ -1,5 +1,4 @@
-import AboutPage from "./AboutPage";
-import indexRoutes from "../routes/index.jsx";
+
 // This is a class-based component because the current
 // version of hot reloading won't hot reload a stateless
 // component at the top-level.
@@ -8,6 +7,7 @@ import Dashboard from "../layouts/Dashboard/Dashboard.jsx";
 import DashboardView from "../views/Dashboard/DashboardView";
 import UserProfile from "../views/UserProfile/UserProfile";
 import Upgrade from "../views/Upgrade/Upgrade";
+import Tags from "../views/Tags";
 import FrontDashBoard from "../components/Frontend/FrontDashBoard";
 import PrivateRoute from "../components/Frontend/PrivateRoute";
 import { NavLink, Route, Switch,withRouter } from "react-router-dom";
@@ -77,6 +77,7 @@ render()
     <PrivateRoute exact path='/admin' authenticated={this.state.isAuthenticated} handleLogout={this.handleLogout}  name="Home" component={Dashboard}/>
 
     <PrivateRoute exact path="/admin/user"   authenticated={this.state.isAuthenticated}  component={UserProfile} />
+    <PrivateRoute exact path="/admin/tags"   authenticated={this.state.isAuthenticated}  component={Tags} />
     <PrivateRoute exact path="/admin/dashboard"  authenticated={this.state.isAuthenticated}  component={DashboardView} />
     <PrivateRoute exact path="/admin/blogArunya"   authenticated={this.state.isAuthenticated}  component={Upgrade} />
     <Route   path='/'  isAuthenticated={this.state.isAuthenticated} component={FrontDashBoard}/>

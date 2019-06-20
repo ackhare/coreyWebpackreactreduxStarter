@@ -139,7 +139,7 @@ return (
           />
           </div>
           {errors.email}
-          <div className="form-group">
+          {/* <div className="form-group">
           <label>Site title</label>
           <input className="form-control"
             type="text"
@@ -148,8 +148,8 @@ return (
             onBlur={handleBlur}
             value={values.siteTitle}
           />
-          {errors.siteTitle}
-          </div>
+          {errors.siteTitle} */}
+          {/* </div> */}
           {/* <div className="form-group">
           <label>Author Name</label>
           <input className="form-control"

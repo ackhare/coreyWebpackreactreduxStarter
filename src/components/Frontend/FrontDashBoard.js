@@ -25,7 +25,6 @@ import Content from './Content';
 import NotificationSystem from "react-notification-system";
 import SignUpForm from '../Forms/SignUpForm';
 import NavLinks from './NavLinks';
-import AboutPage from '../AboutPage';
 import Logout from "./Logout";
 // http://tszekely.github.io/react-learning-module/step-02
 class FrontDashBoard extends React.Component {

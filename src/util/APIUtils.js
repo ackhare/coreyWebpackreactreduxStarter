@@ -102,7 +102,26 @@ export function getCurrentUser() {
         method: 'GET'
     });
 }
-
+export function getTags() {
+    return request({
+        url: API_BASE_URL + "/tags",
+        method: 'GET'
+    });
+}
+export function saveTags(tagName) {
+    return request({
+        url: API_BASE_URL + "/saveTags",
+        method: 'POST',
+        body: tagName
+    });
+}
+export function deleteTags(tagName) {
+    return request({
+        url: API_BASE_URL + "/deleteTags",
+        method: 'POST',
+        body: tagName
+    });
+}
 export function getUserProfile(username) {
     return request({
         url: API_BASE_URL + "/users/" + username,

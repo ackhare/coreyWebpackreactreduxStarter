@@ -66,3 +66,13 @@ http://4youngpadawans.com/upload-file-to-server-react-and-spring/
 https://codepen.io/iiCe89/pen/GZVjBp
 https://codepen.io/craigmdennis/pen/zNeorQ
 https://codepen.io/hartzis/pen/VvNGZP
+
+
+data tables
+
+https://react-bootstrap-table.github.io/react-bootstrap-table2/
+https://codepen.io/Shamiul_Hoque/pen/LNavdZ
+https://mdbootstrap.com/docs/jquery/tables/datatables/#basic-example
+
+pagination
+https://codesandbox.io/s/l29rokm9rm
