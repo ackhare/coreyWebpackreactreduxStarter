@@ -1,4 +1,4 @@
-export const API_BASE_URL = 'http://localhost:8090/api';
+export const API_BASE_URL = "https://arunya.herokuapp.com/api";
 //export const API_BASE_URL = '/api';
 export const ACCESS_TOKEN = 'accessToken';
 

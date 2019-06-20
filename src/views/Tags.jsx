@@ -47,7 +47,8 @@ class Tags extends Component {
             companyCard: null,
             infoDescriptionCard: null,
             fullnameCard: null,
-            tagsCollection:[]
+            tagsCollection:[],
+            editItem:null
 
 
 
@@ -79,6 +80,12 @@ class Tags extends Component {
     this.setState({
         addEnable: false
     });
+    }
+    editTags(tagName,e)
+    {
+      this.setState({
+          editItem:tagName
+    });  
     }
     handleChange(e)
     {
@@ -263,7 +270,6 @@ class Tags extends Component {
         userDetail.country = country;
         userDetail.infoDescription = infoDescription;
         userDetail.username = "chetan";
-        console.log(userDetail);
         saveUserDescription(userDetail).then(response => {
             console.log(response);
             self.setState({
@@ -337,9 +343,6 @@ class Tags extends Component {
         }
         else
             return (
-
-
-
                 <div className="wrapper">
                     <ToastContainer
                         position="top-right"
@@ -358,9 +361,15 @@ class Tags extends Component {
                         
                         <div className="content">
                             {/* <span className="shiftBit"><ToolTip toolTipText="This form will update the user profile" /></span> */}
-                            <div className="col-md-2 shift-up">
+                            <div className="row">
+                            <div className="col-md-6">
+                            <div className="col-md-3 shift-up">
                             <button type="button" onClick={this.toggleAddFeature} className="btn btn-primary proceedToAdminBtn"><i className="fa fa-plus" aria-hidden="true"></i>New</button>
-                            search : <input type="text" value={this.state.filterText} onChange={this.handleChange.bind(this)}/>
+                            </div> </div>
+                            <div className="col-md-6">
+                            <div className="col-md-offset-6">Search : <input type="text" placeholder="Search" value={this.state.filterText} onChange={this.handleChange.bind(this)}/> </div>                        
+                            </div>
+                                                     
                             </div>
                             <div className="container-fluid">
                             <table id="example" className="table table-striped table-bordered dataTable" role="grid" aria-describedby="example_info">
@@ -390,7 +399,8 @@ class Tags extends Component {
             {item.name}
           </td>
           <td>
-          <i className="fa fa-pencil editPencilBtn" aria-hidden="true"></i>
+ 
+          <i onClick={this.editTags.bind(this,item.name)} className="fa fa-pencil editPencilBtn" aria-hidden="true"></i>
           <i onClick={this.deleteTags.bind(this,item.name)} className="fa fa-trash deleteTrash col-md-offset-1" aria-hidden="true"></i>
           </td>
         </tr>

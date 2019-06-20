@@ -410,7 +410,8 @@ pauseOnHover
                 //   </div>
                 // }
               />
-               <FileUploader  currentUser={this.state.username} updateAvatar={(e) => this.updateAvatar(e)}/>
+                          {/* upload does not works on Heraku so I have used static image and commented upload feature*/}
+               {/* <FileUploader  currentUser={this.state.username} updateAvatar={(e) => this.updateAvatar(e)}/> */}
             </Col>
           </Row>
         </Grid>
