@@ -47,8 +47,7 @@ class Tags extends Component {
             companyCard: null,
             infoDescriptionCard: null,
             fullnameCard: null,
-            tagsCollection:[],
-            unMutatedtagsCollection:[]
+            tagsCollection:[]
 
 
 
@@ -90,15 +89,6 @@ class Tags extends Component {
         this.setState({
             filterText: e.target.value
         });
-        let orignalColl=this.state.unMutatedtagsCollection;
-
-        
-        let finalColl=orignalColl.filter(element=> element.name.includes(e.target.value));
-        console.log(finalColl);
-        // this.setState({
-        //     tagsCollection: finalColl
-        // });
-
 
     }
     addTags(e)
