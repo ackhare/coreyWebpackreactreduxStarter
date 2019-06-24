@@ -6,15 +6,27 @@ import { login } from '../../util/APIUtils';
 import { ACCESS_TOKEN } from '../../constants';
 import './Login.css'
 class LoginForm extends Component {
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      usernameOrEmail:null,
+      password:null        
+    }
+  }
   render() {
+        // initial state (starting field values)
+        const initialValues = {
+          usernameOrEmail: 'chetankhareaiet@gmail.com',
+          password: 'secret'
+      };
+      
     return (
       <div className="container conatiner-login-form container-full-width">
       <div className="row" >
        <h3>Login Arunya Admin Panel</h3>
        <div className="meesaage sub-header-message"></div>
 <Formik  enableReinitialize={true}
-        //initialValues={this.state.valuesField}
+        initialValues={initialValues}
       validate={values => {
         let errors = {};
         if (!values.usernameOrEmail) {
@@ -78,7 +90,7 @@ class LoginForm extends Component {
 
           <div className="form-group">
           <input className=" form-control col-md-offset-4 login-form-password"
-            type="text"
+            type="password"
             name="password"
             onChange={handleChange}
             onBlur={handleBlur}

@@ -108,7 +108,7 @@ class Dashboard extends Component {
         <div id="main-panel" className="main-panel" ref="mainPanel">
           <Header {...this.props} />
 
-          <Switch>
+          {/* <Switch>
             {dashboardRoutes.map((prop, key) => {
               if (prop.name === "Notifications")
                 return (
@@ -129,7 +129,7 @@ class Dashboard extends Component {
                 <Route path={prop.path} component={prop.component} key={key} />
               );
             })}
-          </Switch>
+          </Switch> */}
           {/* <Footer /> */}
         </div>
       </div>
