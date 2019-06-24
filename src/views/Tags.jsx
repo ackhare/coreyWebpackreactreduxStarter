@@ -5,7 +5,7 @@ import Sidebar from "../components/Sidebar/Sidebar";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { getTags,saveTags,getCurrentUser, getUserDescriptionFromServer, saveUserDescription,deleteTags } from '../util/APIUtils';
+import { getTags,saveTags,updateTags,getCurrentUser, getUserDescriptionFromServer, saveUserDescription,deleteTags } from '../util/APIUtils';
 import { getUserDescription, setUserDescriptionForm } from '../pojo/UserDescription';
 import {
     Grid,
@@ -34,7 +34,8 @@ class Tags extends Component {
             addEnable: false,
             filterText:"",
             tagsCollection:[],
-            editItem:null
+            editItem:null,
+            editItemValue:null //for handleChangeForUpdate 
 
 
 
@@ -60,8 +61,16 @@ class Tags extends Component {
     editTags(tagName,e)
     {
       this.setState({
-          editItem:tagName
-    });  
+          editItem:tagName,
+          editItemValue:tagName
+    }); 
+   
+    }
+    handleChangeForUpdate(e)
+    {
+      this.setState({
+        editItemValue: e.target.value
+    });
     }
     handleChange(e)
     {
@@ -100,19 +109,20 @@ class Tags extends Component {
               isLoading: false
             }); });
     }
-    updateTags(e)
+    updateTags(itemNameOrignal,e)
     {
         let self=this;
-        let tag = document.getElementsByClassName("addTags")[0].value;
-        console.log(tag.toString().trim());
-        saveTags(tag.toString().trim()).then(response => {
-
-            self.state.tagsCollection.push(response);
-            self.toggleAddFeature();
+        let tag = document.getElementsByClassName("editTagsForSave")[0].value;
+        updateTags(tag,itemNameOrignal).then(response => {
+         
+          self.state.tagsCollection=self.state.tagsCollection.filter(element=> element.name!==itemNameOrignal)
+          self.state.tagsCollection.push(response);
+            
+            self.cancelUpdate();
             self.setState({
               isLoading: false
             });
-            toast.success('You have added tags', {
+            toast.success('You have succefully updated tags', {
               position: "top-right",
               autoClose: 5000,
               hideProgressBar: true,
@@ -128,7 +138,9 @@ class Tags extends Component {
     }
     cancelUpdate(e)
     {
-
+      this.setState({
+        editItem:-1
+  }); 
     }
     deleteTags(tagName,e)
     {
@@ -218,7 +230,7 @@ class Tags extends Component {
                             <button type="button" onClick={this.toggleAddFeature} className="btn btn-primary proceedToAdminBtn"><i className="fa fa-plus" aria-hidden="true"></i>New</button>
                             </div> </div>
                             <div className="col-md-6">
-                            <div className="col-md-offset-6">Search : <input type="text" placeholder="Search" value={this.state.filterText} onChange={this.handleChange.bind(this)}/> </div>                        
+                            <div className="col-md-offset-6">Search : <input type="text" placeholder="Case Senstive Search" value={this.state.filterText} onChange={this.handleChange.bind(this)}/> </div>                        
                             </div>
                                                      
                             </div>
@@ -247,7 +259,7 @@ class Tags extends Component {
     return [
         <tr key={i}>
           <td>
-          {this.state.editItem===item.name ? (<input type="text" value={item.name} className="editTagsForSave"></input>) : (item.name)}
+          {this.state.editItem===item.name ? (<input type="text"  onChange={this.handleChangeForUpdate.bind(this)} value={this.state.editItemValue} className="editTagsForSave"></input>) : (item.name)}
           </td>
           <td>
           {this.state.editItem===item.name ? (<i onClick={this.updateTags.bind(this,item.name)} className="fa fa-save editPencilBtn" aria-hidden="true"></i>) : (<i onClick={this.editTags.bind(this,item.name)} className="fa fa-pencil editPencilBtn" aria-hidden="true"></i>)}

@@ -115,6 +115,13 @@ export function saveTags(tagName) {
         body: tagName
     });
 }
+export function updateTags(tagNameEdited,tagNameOrignal) {
+    return request({
+        url: API_BASE_URL + "/updateTags?tagNameOrignal="+tagNameOrignal,
+        method: 'POST',
+        body: tagNameEdited
+    });
+}
 export function deleteTags(tagName) {
     return request({
         url: API_BASE_URL + "/deleteTags",
