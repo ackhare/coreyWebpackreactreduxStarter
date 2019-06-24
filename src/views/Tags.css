@@ -4,7 +4,7 @@
 }
 .addPlusBtn{
     color: blue;
-    font-size: 30px !important;
+    font-size: 28px !important;
 }
 .editPencilBtn{
     color: black;
@@ -12,7 +12,7 @@
 }
 .cancelMinusBtn{
     color: red;
-    font-size: 30px !important;
+    font-size: 28px !important;
 }
 .deleteTrash{
     color: red;

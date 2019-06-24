@@ -33,20 +33,6 @@ class Tags extends Component {
         this.state = {
             addEnable: false,
             filterText:"",
-            pic: null,
-            email: null,
-            countrty: null,
-            city: null,
-            postalCode: null,
-            fullname: null,
-            company: null,
-            address: null,
-            username: null,
-            infodDescription: null,
-            usernameCard: null,
-            companyCard: null,
-            infoDescriptionCard: null,
-            fullnameCard: null,
             tagsCollection:[],
             editItem:null
 
@@ -56,16 +42,6 @@ class Tags extends Component {
         this.toggleAddFeature = this.toggleAddFeature.bind(this);
         this.addTags = this.addTags.bind(this);
         this.deleteTags = this.deleteTags.bind(this);
-        
-        this.updateAvatar = this.updateAvatar.bind(this);
-        this.saveUserDescription = this.saveUserDescription.bind(this);
-        //this.fetchIntialAvatar = this.fetchIntialAvatar.bind(this);
-        this.handleChangeCompany = this.handleChangeCompany.bind(this);
-        this.handleChangeFullName = this.handleChangeFullName.bind(this);
-        this.handleChangeCity = this.handleChangeCity.bind(this);
-        this.handleChangePostalCode = this.handleChangePostalCode.bind(this);
-        this.handleChangeCountry = this.handleChangeCountry.bind(this);
-        this.handleChangeAddress = this.handleChangeAddress.bind(this);
     }
     notify = () => toast("Wow so easy !");
     toggleAddFeature(e)
@@ -124,6 +100,36 @@ class Tags extends Component {
               isLoading: false
             }); });
     }
+    updateTags(e)
+    {
+        let self=this;
+        let tag = document.getElementsByClassName("addTags")[0].value;
+        console.log(tag.toString().trim());
+        saveTags(tag.toString().trim()).then(response => {
+
+            self.state.tagsCollection.push(response);
+            self.toggleAddFeature();
+            self.setState({
+              isLoading: false
+            });
+            toast.success('You have added tags', {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true
+              });
+          }).catch(error=> {
+            console.log(error);
+            self.setState({
+              isLoading: false
+            }); }); 
+    }
+    cancelUpdate(e)
+    {
+
+    }
     deleteTags(tagName,e)
     {
        
@@ -152,163 +158,8 @@ class Tags extends Component {
               isLoading: false
             }); });
     }
-    handleChangeInfoDescription(e) {
-        this.setState({
-            infoDescription: e.target.value
-        });
-    }
-    handleChangeCompany(e) {
-        this.setState({
-            company: e.target.value
-        });
-    }
-    handleChangeFullName(e) {
-        this.setState({
-            fullname: e.target.value
-        });
-    }
-    handleChangeCity(e) {
-        this.setState({
-            city: e.target.value
-        });
-    }
-    handleChangePostalCode(e) {
-        this.setState({
-            postalCode: e.target.value
-        });
-    }
-    handleChangeCountry(e) {
-        this.setState({
-            country: e.target.value
-        });
-    }
-    handleChangeAddress(e) {
-        this.setState({
-            address: e.target.value
-        });
-    }
-
-    fetchUserDescription() {
-        getCurrentUser()
-            .then(response => {
-                console.log(response);
-                var currentUser = response.username;
-                this.setState({
-                    username: currentUser
-                });
-                getUserDescriptionFromServer(currentUser).then(response1 => {
-
-                    var userDescription = getUserDescription(response1);
-                    console.log(userDescription);
-
-                    this.setState({
-                        company: userDescription.company
-                    });
-                    this.setState({
-                        country: userDescription.country
-                    });
-                    this.setState({
-                        username: currentUser
-                    });
-                    this.setState({
-                        email: userDescription.email
-                    });
-
-                    this.setState({
-                        fullname: userDescription.fullname
-                    });
-
-                    this.setState({
-                        address: userDescription.address
-                    });
-                    this.setState({
-                        pic: userDescription.imageUrl
-                    });
-                    this.setState({
-                        city: userDescription.city
-                    });
-                    this.setState({
-                        postalCode: userDescription.postalCode
-                    });
-                    this.setState({
-                        infoDescription: userDescription.infoDescription
-                    });
-                    this.setState({
-                        isLoading: false
-                    });
-
-                }).catch(error1 => {
-                    this.setState({
-                        isLoading: false
-                    });
-                });
-
-            }).catch(error => {
-                this.setState({
-                    isLoading: false
-                });
-            });
-    }
-    saveUserDescription() {
-        let self = this;
-        self.setState({
-            isLoading: true
-        });
-        var company = document.getElementsByClassName("company")[0].value;
-        var fullName = document.getElementsByClassName("fullname")[0].value;
-        var address = document.getElementsByClassName("address")[0].value;
-        var country = document.getElementsByClassName("country")[0].value;
-        var city = document.getElementsByClassName("city")[0].value;
-        var postalCode = document.getElementsByClassName("postalCode")[0].value;
-        var infoDescription = document.getElementsByClassName("infoDescription")[0].value;
-        var userDetail = {};
-        userDetail.fullname = fullName;
-        userDetail.address = address;
-        userDetail.city = city;
-        userDetail.postalCode = postalCode;
-        userDetail.companyName = company;
-        userDetail.country = country;
-        userDetail.infoDescription = infoDescription;
-        userDetail.username = "chetan";
-        saveUserDescription(userDetail).then(response => {
-            console.log(response);
-            self.setState({
-                isLoading: false
-            });
-            toast.success('You have succefully updated your details', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true
-            });
-        }).catch(error => {
-            console.log(error);
-            self.setState({
-                isLoading: false
-            });
-            toast.error('There was some error, Please contact Administrator', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true
-            });
-        }).finally(function () {
-            self.setState({
-                isLoading: false
-            });
-        });
-
-
-    }
-    updateAvatar(fileLocation) {
-        this.setState({
-            pic: fileLocation
-        });
-    }
+    
+    
 
     componentDidMount() {
         //console.log("userDescription");
@@ -387,7 +238,7 @@ class Tags extends Component {
                                         ) :(<td className="noDisplay"></td>)} */}
                                            {this.state.addEnable ? ( <td className="sorting_1"><input type="text" className="addTags"></input></td>
                                         ) :(<td className="noDisplay"></td>)} 
-  {this.state.addEnable ? ( <td className="sorting_1"><i onClick={this.addTags} className="addPlusBtn fa fa-plus-circle"></i> <i  onClick={this.toggleAddFeature}  className="cancelMinusBtn col-md-offset-2 fa fa-times" aria-hidden="true"></i></td>
+  {this.state.addEnable ? ( <td className="sorting_1"><i onClick={this.addTags} className="addPlusBtn fa fa-plus-circle"></i> <i  onClick={this.toggleAddFeature}  className="cancelMinusBtn col-md-offset-1 fa fa-times" aria-hidden="true"></i></td>
                                         ) :(<td className="noDisplay"></td>)}
 
                                         
@@ -396,12 +247,11 @@ class Tags extends Component {
     return [
         <tr key={i}>
           <td>
-            {item.name}
+          {this.state.editItem===item.name ? (<input type="text" value={item.name} className="editTagsForSave"></input>) : (item.name)}
           </td>
           <td>
- 
-          <i onClick={this.editTags.bind(this,item.name)} className="fa fa-pencil editPencilBtn" aria-hidden="true"></i>
-          <i onClick={this.deleteTags.bind(this,item.name)} className="fa fa-trash deleteTrash col-md-offset-1" aria-hidden="true"></i>
+          {this.state.editItem===item.name ? (<i onClick={this.updateTags.bind(this,item.name)} className="fa fa-save editPencilBtn" aria-hidden="true"></i>) : (<i onClick={this.editTags.bind(this,item.name)} className="fa fa-pencil editPencilBtn" aria-hidden="true"></i>)}
+          {this.state.editItem===item.name ? (<i onClick={this.cancelUpdate.bind(this,item.name)} className="fa fa-times cancelMinusBtn col-md-offset-1" aria-hidden="true"></i>):(<i onClick={this.deleteTags.bind(this,item.name)} className="fa fa-times deleteTrash col-md-offset-1" aria-hidden="true"></i>)}
           </td>
         </tr>
 
@@ -415,7 +265,7 @@ class Tags extends Component {
             {item.name}
           </td>
           <td>
-          <i className="fa fa-pencil editPencilBtn" aria-hidden="true"></i>
+          <i onClick={this.editTags.bind(this,item.name)} className="fa fa-pencil editPencilBtn" aria-hidden="true"></i>
           <i onClick={this.deleteTags.bind(this,item.name)} className="fa fa-trash deleteTrash col-md-offset-1" aria-hidden="true"></i>
           </td>
         </tr>
