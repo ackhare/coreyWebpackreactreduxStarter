@@ -238,8 +238,8 @@ class Tags extends Component {
                             <table id="example" className="table table-striped table-bordered dataTable" role="grid" aria-describedby="example_info">
                                 <thead>
                                     <tr role="row">
-                                    <th className="sorting_asc" aria-controls="example" aria-sort="ascending">Tags</th>
-                                    <th className="sorting" aria-controls="example">Action</th>
+                                    <th className="sorting_asc" aria-controls="example" aria-sort="ascending"><span className="thTitle">Tags</span></th>
+                                    <th className="sorting" aria-controls="example"><span className="thTitle">Action</span></th>
                                    
                                 </tr>
                                 </thead>
@@ -259,7 +259,7 @@ class Tags extends Component {
     return [
         <tr key={i}>
           <td>
-          {this.state.editItem===item.name ? (<input type="text"  onChange={this.handleChangeForUpdate.bind(this)} value={this.state.editItemValue} className="editTagsForSave"></input>) : (item.name)}
+          {this.state.editItem===item.name ? (<input type="text"  onChange={this.handleChangeForUpdate.bind(this)} value={this.state.editItemValue} className="editTagsForSave"></input>) : <span className="trText">{item.name}</span>}
           </td>
           <td>
           {this.state.editItem===item.name ? (<i onClick={this.updateTags.bind(this,item.name)} className="fa fa-save editPencilBtn" aria-hidden="true"></i>) : (<i onClick={this.editTags.bind(this,item.name)} className="fa fa-pencil editPencilBtn" aria-hidden="true"></i>)}
@@ -274,11 +274,11 @@ class Tags extends Component {
     return [
         <tr key={i}>
           <td>
-            {item.name}
+          {this.state.editItem===item.name ? (<input type="text"  onChange={this.handleChangeForUpdate.bind(this)} value={this.state.editItemValue} className="editTagsForSave"></input>) : (<span className="trText">{item.name}</span>)}
           </td>
           <td>
-          <i onClick={this.editTags.bind(this,item.name)} className="fa fa-pencil editPencilBtn" aria-hidden="true"></i>
-          <i onClick={this.deleteTags.bind(this,item.name)} className="fa fa-trash deleteTrash col-md-offset-1" aria-hidden="true"></i>
+          {this.state.editItem===item.name ? (<i onClick={this.updateTags.bind(this,item.name)} className="fa fa-save editPencilBtn" aria-hidden="true"></i>) : (<i onClick={this.editTags.bind(this,item.name)} className="fa fa-pencil editPencilBtn" aria-hidden="true"></i>)}
+          {this.state.editItem===item.name ? (<i onClick={this.cancelUpdate.bind(this,item.name)} className="fa fa-times cancelMinusBtn col-md-offset-1" aria-hidden="true"></i>):(<i onClick={this.deleteTags.bind(this,item.name)} className="fa fa-times deleteTrash col-md-offset-1" aria-hidden="true"></i>)}
           </td>
         </tr>
 
