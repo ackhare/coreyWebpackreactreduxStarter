@@ -71,7 +71,7 @@ class FrontDashBoard extends React.Component {
   }
 
   componentDidMount() {
-    console.log("c khasgckasvcaskcgasclasclgo");
+    console.log("Into Front DashBoard");
     this.loadCurrentUser();
   }
 

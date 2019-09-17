@@ -36,9 +36,6 @@ class Tags extends Component {
             tagsCollection:[],
             editItem:null,
             editItemValue:null //for handleChangeForUpdate 
-
-
-
         }
         this.toggleAddFeature = this.toggleAddFeature.bind(this);
         this.addTags = this.addTags.bind(this);

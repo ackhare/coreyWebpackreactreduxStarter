@@ -61,7 +61,7 @@ class MainRoutes extends Component{
   }
 
   componentDidMount() {
-    console.log("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+   
     this.loadCurrentUser();
   }
 render()
@@ -76,10 +76,10 @@ render()
     <Switch>
     <PrivateRoute exact path='/admin' authenticated={this.state.isAuthenticated} handleLogout={this.handleLogout}  name="Home" component={Dashboard}/>
 
-    <PrivateRoute exact path="/admin/user"   authenticated={this.state.isAuthenticated}  component={UserProfile} />
-    <PrivateRoute exact path="/admin/tags"   authenticated={this.state.isAuthenticated}  component={Tags} />
+    <PrivateRoute exact path="/admin/user"   authenticated={true}  component={UserProfile} />
+    <PrivateRoute exact path="/admin/tags"   authenticated={true}  component={Tags} />
     <PrivateRoute exact path="/admin/dashboard"  authenticated={this.state.isAuthenticated}  component={DashboardView} />
-    <PrivateRoute exact path="/admin/blogArunya"   authenticated={this.state.isAuthenticated}  component={Upgrade} />
+    <PrivateRoute exact path="/admin/blogArunya"   authenticated={true}  component={Upgrade} />
     <Route   path='/'  isAuthenticated={this.state.isAuthenticated} component={FrontDashBoard}/>
 
     </Switch>
